@@ -3,27 +3,17 @@
 // $wideBannerUrl: ''
 $wideBannerWidth: 765px;
 
-$cream: #FDF2F0;
-$red: #F20505;
-$black: #141B23;
-$blue: #05C7F2;
+$red: #d92534;
+$black: #233559;
 $grey: #6a768d;
+$cream: #f2f2f2;
 $orange: #f4a98f;
-$brown: #8C7979;
-
-$text-primary: $black;
-$text-secondary: $brown;
-$text-header: $cream;
-$background-dark: $brown;
-$background-neutral: $cream;
-$text-highlight: $blue;
-$highlight: $red;
 
 body {
   font-family: 'Raleway', sans-serif;
   margin: auto;
   max-width: $wideBannerWidth;
-  background-color: $background-dark;
+  background-color: $grey;
   h3 {
     font-size: 3em;
     font-family: 'Teko', sans-serif;
@@ -32,17 +22,11 @@ body {
   }
   h4 {
     &.postHeader {
-      color: $text-header;
+      color: $cream;
     }
     font-size: 1.5em;
     font-family: 'Teko', sans-serif;
     margin: 0;
-  }
-  a {
-    text-decoration: none;
-    font-weight: bolder;
-    color: $highlight;
-    cursor: pointer;
   }
 }
 header {
@@ -64,13 +48,13 @@ header {
   }
 }
 .highlightText {
-  color: $text-highlight;
+  color: $orange;
 }
 .content {
   margin: 2px;
 }
 .programBlock {
-  background-color: $background-neutral;
+  background-color: $cream;
   // border: 1px solid black;
   border-radius: 5px;
   padding: 16px 20px;
@@ -98,11 +82,6 @@ header {
       flex-grow: 2;
     }
 
-    .wrapFix {
-      width: min-content;
-      align-self: flex-end;
-    }
-
     &-name {
       text-align: right;
     }
@@ -113,7 +92,7 @@ header {
   * {
     margin: 0;
   }
-  background-color: $background-neutral;
+  background-color: $cream;
   &-title {
     text-align: center;
     padding-top: 8px;
@@ -127,7 +106,7 @@ header {
     }
     &::after {
       content: '';
-      border: 1px solid $text-secondary;
+      border: 1px solid $grey;
       width: 50%;
       margin-top: 20px;
       position: absolute;
@@ -138,16 +117,5 @@ header {
     &:last-child::after {
       display: none;
     }
-  }
-}
-
-.auditionFooter {
-  background-color: $background-neutral;
-  padding: 16px;
-  text-align: center;
-  font-size: larger;
-  a {
-    margin: 8px;
-    display: block;
   }
 }

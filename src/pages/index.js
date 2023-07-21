@@ -17,6 +17,15 @@ const IndexPage = () => {
       <header>
         <h4 className="preHeader">The Post Meridian Radio Players Present</h4>
         <ResponsiveHeroImage />
+        {useWindowDimensions().width < 530 && (
+          <h4 className="postHeader">
+            Plus! The never before revealed to the public{" "}
+            <span className="highlightText">
+              "Plan 8 from the Outer Ether!"
+            </span>{" "}
+            by Brian Rust
+          </h4>
+        )}
       </header>
       <div className="content">
         <div className="credits">
@@ -30,7 +39,7 @@ const IndexPage = () => {
         </div>
       </div>
 
-      <footer><AuditionFooter /></footer>
+      <footer>{/*<SocialMediaLinks />*/}</footer>
     </body>
   );
 };
