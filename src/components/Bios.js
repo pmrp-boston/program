@@ -4,12 +4,35 @@ import { Element } from "react-scroll";
 
 const Bios = () => {
   const biosArray = data.bios;
+  // let biosArray = [];
+  // rawBiosData.forEach((bio) => {
+  //   console.log(bio.bioText);
+  //   let bioText =
+  //     bio.bioText?.charAt(0).toUpperCase() + bio.bioText?.substring(1) || '';
+  //   if (bioText.substring(0, 2) !== 'Is' && bioText.substring(0, 3) !== 'Has') {
+  //     biosArray.push({
+  //       firstName: bio.firstName,
+  //       lastName: bio.lastName,
+  //       bioText: bio.bioText,
+  //       bioId: bio.timestamp,
+  //     });
+  //   } else {
+  //     const bioString = bioText.charAt(0).toLowerCase() + bioText.substring(1);
+  //     bioText = `${bio.firstName} ${bioString}`;
+  //     biosArray.push({
+  //       firstName: bio.firstName,
+  //       lastName: bio.lastName,
+  //       bioText,
+  //       bioId: bio.timestamp,
+  //     });
+  //   }
+  // });
 
   const compare = (a, b) => {
-    if (a.lastName < b.lastName) {
+    if (a.name < b.name) {
       return -1;
     }
-    if (a.lastName > b.lastName) {
+    if (a.name > b.name) {
       return 1;
     }
     return 0;

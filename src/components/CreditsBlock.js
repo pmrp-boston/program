@@ -25,17 +25,14 @@ const CreditsBlock = ({ show, goToBio }) => {
 
 const SingleCredit = ({ credit, goToBio }) => {
   const { name, role } = credit;
-  const {width} = useWindowDimensions();
-  const wrapFixClass = role.length > 17 && width < 400 ? 'wrapFix' : '';
-  
 
   return (
     <div className="singleCredit">
-      <span className={`singleCredit-role ${wrapFixClass}`}>{role}</span>
+      <span className="singleCredit-role">{role}</span>
       <span className="dots"></span>
-      <a onClick={() => goToBio(name)} className={`singleCredit-name ${wrapFixClass}`}>
+      <span onClick={() => goToBio(name)} className="singleCredit-name">
         {name}
-      </a>
+      </span>
     </div>
   );
 };
