@@ -19,9 +19,9 @@ const IndexPage = () => {
       <div className="content">
         <div className="credits">
           {/*<ATFProgramInfo />*/}
-          {data.shows.map((show) => {
-            <CreditsBlock show={show} goToBio={scrollToBio} />;
-          })}
+          {data.shows.map((show) => (
+            <CreditsBlock show={show} goToBio={scrollToBio} />
+          ))}
           <CreditsBlock show={data.crew} goToBio={scrollToBio} />
           {/*<BTFProgramInfo />*/}
         </div>
