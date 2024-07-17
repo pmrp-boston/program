@@ -1,32 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,600;1,400;1,600&family=Limelight&family=Teko&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,600;1,400;1,600&family=Limelight&family=Teko&display=swap");
 
 // $wideBannerUrl: ''
 $wideBannerWidth: 765px;
 
-$cream: #FDF2F0;
-$red: #F20505;
-$black: #141B23;
-$blue: #05C7F2;
-$grey: #6a768d;
-$orange: #f4a98f;
-$brown: #8C7979;
+$black: #0d0d0d;
+$white: #f2f2f2;
+$yellow1: #f2cb05;
+$yellow2: #f2e205;
+$red: #951015;
 
 $text-primary: $black;
-$text-secondary: $brown;
-$text-header: $cream;
-$background-dark: $brown;
-$background-neutral: $cream;
-$text-highlight: $blue;
+$text-secondary: $red;
+$text-header: $white;
+$background-dark: $red;
+$background-neutral: $yellow1;
+$text-highlight: $yellow2;
 $highlight: $red;
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   margin: auto;
   max-width: $wideBannerWidth;
   background-color: $background-dark;
   h3 {
     font-size: 3em;
-    font-family: 'Teko', sans-serif;
+    font-family: "Teko", sans-serif;
     margin: 0;
     text-align: center;
   }
@@ -35,7 +33,7 @@ body {
       color: $text-header;
     }
     font-size: 1.5em;
-    font-family: 'Teko', sans-serif;
+    font-family: "Teko", sans-serif;
     margin: 0;
   }
   a {
@@ -49,7 +47,7 @@ header {
   text-align: center;
   .preHeader {
     text-transform: uppercase;
-    font-family: 'Limelight', sans-serif;
+    font-family: "Limelight", sans-serif;
     margin: 0;
     color: white;
     background-color: black;
@@ -92,7 +90,7 @@ header {
     padding: 6px 0;
 
     .dots {
-      content: '';
+      content: "";
       margin-top: auto;
       margin-bottom: 4px;
       border: 1px dashed black;
@@ -101,7 +99,6 @@ header {
 
     .wrapFix {
       width: min-content;
-      
     }
 
     &-name {
@@ -131,7 +128,7 @@ header {
       margin-bottom: 8px;
     }
     &::after {
-      content: '';
+      content: "";
       border: 1px solid $text-secondary;
       width: 50%;
       margin-top: 20px;
