@@ -1,7 +1,5 @@
 import * as React from "react";
-import { plan9, plan8, crew, data } from "../data.js";
 import useWindowDimensions from "../utilities/useWindowDimensions.js";
-import Scroll from "react-scroll";
 
 const CreditsBlock = ({ show, goToBio }) => {
   const { showName, writerCredit, directorCredit, description, credits } = show;
@@ -25,14 +23,19 @@ const CreditsBlock = ({ show, goToBio }) => {
 
 const SingleCredit = ({ credit, goToBio }) => {
   const { name, role } = credit;
+  const {width} = useWindowDimensions();
+  const wrapFixRole = role.length > 16 && width < 400;
+  const wrapFixName = name.length > 16 && width < 400;
+
+  
 
   return (
     <div className="singleCredit">
-      <span className="singleCredit-role">{role}</span>
+      <span className={`singleCredit-role ${wrapFixRole ? "wrapFix" : "noFix"}`}>{role}</span>
       <span className="dots"></span>
-      <span onClick={() => goToBio(name)} className="singleCredit-name">
+      <a onClick={() => goToBio(name)} className={`singleCredit-name ${wrapFixName ? "wrapFix" : "noFix"}`}>
         {name}
-      </span>
+      </a>
     </div>
   );
 };

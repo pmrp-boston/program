@@ -1,11 +1,9 @@
-import React from 'react';
-import useWindowDimensions from '../utilities/useWindowDimensions.js';
+import React from "react";
+import useWindowDimensions from "../utilities/useWindowDimensions.js";
 
 const ResponsiveHeroImage = () => {
   const imgSrc =
-    useWindowDimensions().width >= 530
-      ? 'https://pmrp.org/static/plan9/banner_with_text.png'
-      : 'https://pmrp.org/static/plan9/simple_banner_cropped.png';
+    "https://snackney.nyc3.cdn.digitaloceanspaces.com/PMRP/Scarlet/Scarlet9MODBANNERv2.jpg";
   return (
     <div className="heroBannerImg">
       <img src={imgSrc} />
