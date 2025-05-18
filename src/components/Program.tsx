@@ -5,7 +5,7 @@ import { scroller } from "react-scroll";
 import { Person, Show, groupPeopleByShow, ShowKeys, showNames } from "../data.js";
 import "../App.scss";
 
-const Program = ({ data }: { data: Person[] }) => {
+const Program = ({ data, showTheme }: { data: Person[], showTheme: string }) => {
   const scrollToBio = (name: string) => scroller.scrollTo(name, {});
   const peopleByShow = groupPeopleByShow(data);
 
@@ -38,7 +38,7 @@ const Program = ({ data }: { data: Person[] }) => {
     <div>
       <header>
         <h4 className="preHeader">The Post Meridian Radio Players Present</h4>
-        <ResponsiveHeroImage />
+        <ResponsiveHeroImage imgSrc={`./${showTheme}banner.png`} />
       </header>
       <div className="content">
         <div className="credits">

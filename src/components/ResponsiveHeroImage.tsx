@@ -1,7 +1,7 @@
-const ResponsiveHeroImage = () => {
+const ResponsiveHeroImage = ({ imgSrc = './DangerousBannerSimple.png' }: { imgSrc?: string }) => {
   return (
     <div className='heroBannerImg'>
-      <img src="./DangerousBannerSimple.png" alt="The Post Meridian Radio Players Presents: Dangerous Adventures!" className="heroBannerImage" />
+      <img src={imgSrc} alt="The Post Meridian Radio Players Presents: Dangerous Adventures!" className="heroBannerImage" />
     </div>
   );
 };
