@@ -1,7 +1,7 @@
-const ResponsiveHeroImage = ({ imgSrc = './DangerousBannerSimple.png' }: { imgSrc?: string }) => {
+const ResponsiveHeroImage = ({ imgAlt, imgSrc = './DangerousBannerSimple.png' }: { imgAlt: string, imgSrc?: string }) => {
   return (
     <div className='heroBannerImg'>
-      <img src={imgSrc} alt="The Post Meridian Radio Players Presents: Dangerous Adventures!" className="heroBannerImage" />
+      <img src={imgSrc} alt={imgAlt} className="heroBannerImage" />
     </div>
   );
 };

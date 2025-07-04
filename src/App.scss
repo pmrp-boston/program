@@ -83,6 +83,11 @@ div.thirteen {
   @include apply-theme();
 }
 
+div.bullets {
+  $current-theme: themes.$bullets-theme !global;
+  @include apply-theme();
+}
+
 body {
   padding: 0;
 }

@@ -1,12 +1,14 @@
 // This list can be added to indefinitely, the Shows type will read keys dynamically
 // These should match the way the show is listed in the Bios form
 export const SHOWS = {
-  DANGEROUS: 'Dangerous Game',
-  TOWNIES: 'Townies & Dragons',
-  BELLAMY: 'Captain Bellamy',
+  DANGEROUS: 'The Most Dangerous Game',
+  TOWNIES: 'Townies & Dragons: A Barrel Full of Peril',
+  BELLAMY: 'The Bonnie Tales of Captain Bellamy: Song of Trickery',
   PEARL: 'The Black Pearl',
   THIN: 'The Thin Man',
-  TRIFLES: 'Trifles'
+  TRIFLES: 'Trifles',
+  SPADE: "Samantha Spade in The Steve Starr Caper",
+  AFTER: "After the Thin Man",
 } as const;
 
 export const PROD_KEYS = {
@@ -17,6 +19,7 @@ export const PROD_KEYS = {
 
 // This includes keys for all shows currently in the SHOWS list
 export type ShowKeys = typeof SHOWS[keyof typeof SHOWS];
+export type ShowTitles = keyof typeof SHOWS;
 export type ProdKeys = typeof PROD_KEYS[keyof typeof PROD_KEYS];
 
 export interface Person {
@@ -38,19 +41,32 @@ export interface Show {
 
 // This includes ONLY the names of the shows that should be displayed for this production
 // and associates them with their string keys
-export const showNames = {
-  'Dangerous Game': 'The Most Dangerous Game',
-  'Townies & Dragons': 'Townies & Dragons: Barrel Full of Peril',
-  'Captain Bellamy': 'The Bonnie Tales of Captain Bellamy: Song of Trickery',
-  'The Black Pearl': 'The Black Pearl',
-  'The Thin Man': 'The Thin Man',
-  'Trifles': 'Trifles'
-}
+// export const showNames = {
+//   'Dangerous Game': 'The Most Dangerous Game',
+//   'Townies & Dragons': 'Townies & Dragons: Barrel Full of Peril',
+//   'Captain Bellamy': 'The Bonnie Tales of Captain Bellamy: Song of Trickery',
+//   'The Black Pearl': 'The Black Pearl',
+//   'The Thin Man': 'The Thin Man',
+//   'Trifles': 'Trifles'
+// }
 
-// This matches show query params to their spreadsheet urls
-export const infoUrls: { [key in ProdKeys]: string } = {
-  [(PROD_KEYS.DANGEROUS)]: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFkErcd5ZxPZH3d5reCj2ioVSKqW4ZOt3Y5Wd76MTLy1tA-7h-NKheExSfr7h3LOXNa-ZM6DTHwIcP/pub?output=csv',
-  [(PROD_KEYS.THIRTEEN)]: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDvgsIjFxVnqxPFLdGrBYqVuXGJ8T5ibvw_v9hl2ToJ2yAQZHleGMkhkzVpyNrIVWZzqIlZ1d5IOLN/pub?gid=1373399454&single=true&output=csv',
+// This matches show query params to their spreadsheet urls and state
+export const showInfo: { [key in ProdKeys]: { url: string, biosExist: boolean } } = {
+  [(PROD_KEYS.DANGEROUS)]:
+  {
+    url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFkErcd5ZxPZH3d5reCj2ioVSKqW4ZOt3Y5Wd76MTLy1tA-7h-NKheExSfr7h3LOXNa-ZM6DTHwIcP/pub?output=csv',
+    biosExist: true
+  },
+  [(PROD_KEYS.THIRTEEN)]:
+  {
+    url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDvgsIjFxVnqxPFLdGrBYqVuXGJ8T5ibvw_v9hl2ToJ2yAQZHleGMkhkzVpyNrIVWZzqIlZ1d5IOLN/pub?gid=1373399454&single=true&output=csv',
+    biosExist: true
+  },
+  [PROD_KEYS.BULLETS]:
+  {
+    url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFkErcd5ZxPZH3d5reCj2ioVSKqW4ZOt3Y5Wd76MTLy1tA-7h-NKheExSfr7h3LOXNa-ZM6DTHwIcP/pub?gid=1855070242&single=true&output=csv',
+    biosExist: false
+  }
 }
 
 // Function to group people by show

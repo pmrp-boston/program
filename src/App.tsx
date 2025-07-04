@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import './App.scss';
 import * as XLSX from 'xlsx';
 import Program from './components/Program';
-import { Person, infoUrls } from './data';
+import { Person, showInfo } from './data';
 import Papa from 'papaparse';
+import Menu from './components/Menu';
 
 export default function App() {
   const [data, setData] = useState<Person[]>([]);
   const [showTheme, setShowTheme] = useState<string>('');
+  const [biosExist, setBiosExist] = useState<boolean>(false);
 
   const fetchData = async (show: string | null) => {
     if (!show) {
@@ -15,7 +17,7 @@ export default function App() {
       return;
     }
     try {
-      const showUrl = infoUrls[show];
+      const showUrl = showInfo[show].url;
       const response = await fetch(showUrl);
       const csvData = await response.text();
       const extractedData = processData(csvData);
@@ -60,9 +62,9 @@ export default function App() {
     const rawData: any[][] = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
     const extractedData: Person[] = rawData.slice(1).map((row) => ({
       name: row[1],   // Column B
-      shows: row[3]?.split(', '),    // Column D
-      roles: row[4],    // Column E
-      bio: row[5],      // Column F
+      shows: row[2]?.split(', '),    // Column D
+      roles: row[3],    // Column E
+      bio: row[4],      // Column F
     })).filter(person => person.name); // Filter out rows with no name
     return extractedData;
   }
@@ -73,28 +75,29 @@ export default function App() {
     if (urlParams.has('show')) {
       const showParam = urlParams.get('show');
       if (showParam !== null) {
+        showInfo[showParam].biosExist ? setBiosExist(true) : setBiosExist(false);
         fetchData(showParam);
         setShowTheme(showParam)
       }
     } else {
       console.log('reading data')
+      setBiosExist(true)
       readData();
     }
   }, []);
 
   return (
     <div className={showTheme}>
-      <div className="wrapper">
-        <Program data={data} showTheme={showTheme} />
-        <a href="#top" className="backToTop--link">
-          <div className="backToTop">
-            <span>Back to Top</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" fill="currentColor" className="bi bi-arrow-up" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5" />
-            </svg>
-          </div>
-        </a>
-      </div>
+      <Menu />
+      <Program data={data} showTheme={showTheme} biosExist={biosExist} />
+      <a href="#top" className="backToTop--link">
+        <div className="backToTop">
+          <span>Back to Top</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" fill="currentColor" className="bi bi-arrow-up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5" />
+          </svg>
+        </div>
+      </a>
     </div>
   );
 }

@@ -1,13 +1,24 @@
 // Blank theme
-// $ -theme: (
-//     $text-primary: #,
-//     $text-secondary: #,
-//     $text-header: #,
-//     $background-dark: #,
-//     $background-neutral: #,
-//     $text-highlight: #,
-//     $highlight: #,
+// $-theme: (
+//     'text-primary': #,
+//     'text-secondary': #,
+//     'text-header': #,
+//     'background-dark': #,
+//     'background-neutral': #,
+//     'text-highlight': #,
+//     'highlight': #,
 // );
+
+// Bullets Over Boston - Summer Mysteries 2025 theme
+$bullets-theme: (
+  "text-primary": #343446,
+  "text-secondary": #4d5031,
+  "text-header": #4d5031,
+  "background-dark": #343446,
+  "background-neutral": #d9d9d9,
+  "text-highlight": #4d5031,
+  "highlight": #f5320b,
+);
 
 // Dangerous Adventures Spring 2025
 $dangerous-theme: (
