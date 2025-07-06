@@ -61,7 +61,7 @@ const CreditsBlock = ({ show, goToBio, crewBlock }: { show: Show, goToBio: (name
   );
 };
 
-const SingleCredit = ({ show, credit, goToBio }: { show: ShowKeys, credit: Person, goToBio: (name: string) => void }) => {
+const SingleCredit = ({ show, credit, goToBio, biosReady = false }: { show: ShowKeys, credit: Person, goToBio: (name: string) => void, biosReady?: boolean }) => {
   const { name, roles } = credit;
   const { width } = useWindowDimensions();
   const roleString = roles[show].join(', ');
@@ -74,12 +74,13 @@ const SingleCredit = ({ show, credit, goToBio }: { show: ShowKeys, credit: Perso
     <div className="singleCredit">
       <span className={`singleCredit-role ${wrapFixRole ? "wrapFix" : "noFix"}`}>{roleString}</span>
       <span className="dots"></span>
-      <a onClick={() => goToBio(name)} className={`singleCredit-name ${wrapFixName ? "wrapFix" : "noFix"}`}>
+      {biosReady && <a onClick={() => goToBio(name)} className={`singleCredit-name ${wrapFixName ? "wrapFix" : "noFix"}`}>
         {name}
         <span className="material-symbols-outlined">
           history_edu
         </span>
-      </a>
+      </a>}
+      {!biosReady && <span className={`singleCredit-name ${wrapFixName ? "wrapFix" : "noFix"}`}>{name}</span>}
     </div>
   );
 };

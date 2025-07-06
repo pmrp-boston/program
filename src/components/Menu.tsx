@@ -1,12 +1,22 @@
 import React from 'react';
 
-const Menu: React.FC = () => {
+interface MenuProps {
+  setActive: (component: string) => void;
+}
+
+const Menu: React.FC<MenuProps> = ({ setActive }) => {
   return (
     <nav>
       <ul className="mainMenu">
-        <li><a href="/">Cast and Crew</a></li>
-        <li><a href="/directions">Directions</a></li>
-        <li><a href="/infoaccess">Information and Accessibility</a></li>
+        <li>
+          <button onClick={() => setActive('program')}>Cast and Crew</button>
+        </li>
+        <li>
+          <button onClick={() => setActive('other1')}>Directions</button>
+        </li>
+        <li>
+          <button onClick={() => setActive('other2')}>Information and Accessibility</button>
+        </li>
       </ul>
       <ul className="secondaryMenu">
         <li><a href="https://www.pmrp.org" target="_blank" rel="noopener noreferrer">PMRP Main Website</a></li>

@@ -1,16 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './App.scss';
 import Program from './components/Program';
 import { Person, ProdKeys, PROD_KEYS, ShowKeys, showInfo } from './data';
 import jsonData from './assets/showData.json';
 import Menu from './components/Menu';
 
+function OtherComponent1() {
+  return (
+    <div>
+      <h2>This is component 1!</h2>
+      <p>It can be swapped with the Program component.</p>
+    </div>
+  );
+}
+
+function OtherComponent2() {
+  return (
+    <div>
+      <h2>This is component 2!</h2>
+      <p>It can also be swapped with the Program component.</p>
+    </div>
+  );
+}
+
 export default function App() {
   const [data, setData] = useState<Person[]>([]);
   const [showTheme, setShowTheme] = useState<string>('');
   const [biosExist, setBiosExist] = useState<boolean>(false);
+  const [activeComponent, setActiveComponent] = useState<string>('program');
 
-  const readData = (show: ProdKeys) => {
+  const readData = useCallback((show: ProdKeys) => {
     try {
       const extractedData = processJsonData((jsonData as any)[show]);
       console.log('Parsed JSON Data:', extractedData);
@@ -18,9 +37,9 @@ export default function App() {
     } catch (error) {
       console.error('Error reading data from JSON:', error);
     }
-  };
+  }, []);
 
-  const processJsonData = (jsonData: any[]): Person[] => {
+  const processJsonData = useCallback((jsonData: any[]): Person[] => {
     console.log(`JSON data:`, jsonData);
     return jsonData.map((row: any) => ({
       name: row["Full Name"],
@@ -28,7 +47,7 @@ export default function App() {
       roles: row.Roles,
       bio: row.Bio,
     })).filter((person: Person) => person.name);
-  }
+  }, []);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -43,12 +62,39 @@ export default function App() {
     } else {
       console.log('no show param exists')
     }
-  }, []);
+    document.title = `Current Page: ${activeComponent}`;
+  }, [activeComponent, readData, showInfo]);
+
+  const setActiveComponentHandler = (component: string) => {
+    setActiveComponent(component);
+  };
+
+  const renderComponent = () => {
+    if (activeComponent === 'program') {
+      return (
+        <div aria-live="polite" className="content">
+          <Program data={data} showTheme={showTheme} biosExist={biosExist} />
+        </div>
+      );
+    } else if (activeComponent === 'other1') {
+      return (
+        <div aria-live="polite" className="content">
+          <OtherComponent1 />
+        </div>
+      );
+    } else {
+      return (
+        <div aria-live="polite" className="content">
+          <OtherComponent2 />
+        </div>
+      );
+    }
+  };
 
   return (
     <div className={showTheme}>
-      <Menu />
-      <Program data={data} showTheme={showTheme} biosExist={biosExist} />
+      <Menu setActive={setActiveComponentHandler} />
+      {renderComponent()}
       <a href="#top" className="backToTop--link">
         <div className="backToTop">
           <span>Back to Top</span>

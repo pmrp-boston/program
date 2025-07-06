@@ -3,7 +3,9 @@
 @function theme($key) {
   @if map-has-key($current-theme, $key) {
     @return map-get($current-theme, $key);
-  } @else {
+  }
+
+  @else {
     @warn "Key '#{$key}' not found in current theme.";
     @return null; // Or a default value if you prefer
   }
@@ -15,20 +17,25 @@
     margin: auto;
     // max-width: theme("wideBannerWidth");
     background-color: theme("background-dark");
+
     h3 {
       font-size: 3em;
       font-family: "Teko", sans-serif;
       margin: 0;
       text-align: center;
     }
+
     h4 {
       &.postHeader {
         color: theme("text-header");
       }
+
       font-size: 1.2em;
-      font-family: "Teko", sans-serif;
+      font-family: "Teko",
+      sans-serif;
       margin: 0;
     }
+
     a {
       text-decoration: none;
       font-weight: bolder;
@@ -36,8 +43,10 @@
       cursor: pointer;
     }
   }
+
   header {
     text-align: center;
+
     .preHeader {
       text-transform: uppercase;
       font-family: "Limelight", sans-serif;
@@ -45,21 +54,26 @@
       color: white;
       background-color: black;
     }
+
     h3 {
       margin-top: 4px;
     }
+
     .heroBannerImg {
       img {
         width: 100%;
       }
     }
   }
+
   .highlightText {
     color: theme("text-highlight");
   }
+
   .content {
     margin: 2px;
   }
+
   .backToTop {
     right: 0;
     position: fixed;
@@ -68,16 +82,19 @@
     background: white;
     border-radius: 100%;
     margin: 1em;
+
     span {
       display: none;
     }
   }
+
   .programBlock {
     background-color: theme("background-neutral");
     // border: 1px solid black;
     border-radius: 5px;
     padding: 16px 12px;
     margin: 24px 0;
+
     .foleyDivider {
       border: 1px solid theme("text-secondary");
       width: 50%;
@@ -86,67 +103,105 @@
       margin-left: 25%;
       left: 0;
     }
+
     &-header {
       h3 {
         font-size: 3em;
       }
+
       &--highlightCredits {
         align-items: center;
         text-align: center;
       }
     }
+
     .highlightCredit {
       display: block;
       font-size: 1.25em;
+
       span.material-symbols-outlined {
         vertical-align: middle;
       }
     }
+
     h3 {
       margin: 0;
       text-align: center;
     }
+
     .wrapFix {
       font-size: 0.85em;
     }
+
     .singleCredit {
-      display: flex;
-      padding: 6px 0;
+      @media (min-width: 500px) {
+        display: flex;
+      }
+
+      padding: 1em 0;
 
       .dots {
         content: "";
         margin-top: auto;
         margin-bottom: 4px;
-        border: 1px dashed black;
+        border-bottom: 1px dashed black;
         flex-grow: 2;
+
+        @media (max-width: 500px) {
+          display: none;
+        }
       }
 
       &-name {
         text-align: right;
         align-self: flex-end;
+
+        @media (max-width: 500px) {
+          flex-direction: column;
+          display: flex;
+
+          &::before {
+            content: '';
+            display: inline-block;
+            border-bottom: 1px dashed black;
+            width: 100%;
+            margin: 0 0.25em;
+          }
+        }
+
+        // flex-shrink: 0;
+
       }
+
       &-role {
         align-self: flex-end;
+        max-width: 55%;
+        flex-shrink: 0;
       }
     }
   }
 
   .biosBlock {
     background-color: theme("background-neutral");
+
     * {
       margin: 0;
     }
+
     &-title {
       text-align: center;
       padding-top: 8px;
     }
+
     &-singleBio {
       padding: 16px;
       margin-bottom: 16px;
+
       &--title {
         text-align: center;
         margin-bottom: 8px;
       }
+
       &::after {
         content: "";
         border: 1px solid theme("text-secondary");
@@ -157,6 +212,7 @@
         margin-left: 25%;
         left: 0;
       }
+
       &:last-child::after {
         display: none;
       }
@@ -168,6 +224,7 @@
     padding: 16px;
     text-align: center;
     font-size: larger;
+
     a {
       margin: 8px;
       display: block;

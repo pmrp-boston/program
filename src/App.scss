@@ -11,7 +11,7 @@ body {
   font-family: sans-serif;
   font-size: medium;
   margin: 0;
-  padding: 12px;
+  padding: 12px 12px 36px 12px;
   background-color: #f4f4f4;
   color: #333;
 }
@@ -96,9 +96,9 @@ div.bullets {
   @include apply-theme();
 }
 
-body {
-  padding: 0;
-}
+// body {
+//   padding: 0;
+// }
 
 .App {
   background-color: black;
@@ -206,21 +206,16 @@ body {
 //   .singleCredit {
 //     display: flex;
 //     padding: 6px 0;
-
-//     .dots {
-//       content: "";
-//       margin-top: auto;
-//       margin-bottom: 4px;
-//       border: 1px dashed black;
-//       flex-grow: 2;
-//     }
-
-//     &-name {
-//       text-align: right;
-//       align-self: flex-end;
-//     }
 //     &-role {
 //       align-self: flex-end;
+//     }
+//     &::before {
+//       content: "";
+//       display: block;
+//       border-top: 1px dashed black;
+//       margin-bottom: 4px;
+//       margin-top: auto;
+//       flex-grow: 2;
 //     }
 //   }
 // }
