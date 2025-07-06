@@ -61,20 +61,17 @@ export const showInfo: { [key in ProdKeys]: { biosExist: boolean, biosReady?: bo
   [(PROD_KEYS.DANGEROUS)]:
   {
     // url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFkErcd5ZxPZH3d5reCj2ioVSKqW4ZOt3Y5Wd76MTLy1tA-7h-NKheExSfr7h3LOXNa-ZM6DTHwIcP/pub?output=csv',
-    biosExist: true,
-    biosReady: true
+    biosExist: true
   },
   [(PROD_KEYS.THIRTEEN)]:
   {
     // url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDvgsIjFxVnqxPFLdGrBYqVuXGJ8T5ibvw_v9hl2ToJ2yAQZHleGMkhkzVpyNrIVWZzqIlZ1d5IOLN/pub?gid=1373399454&single=true&output=csv',
-    biosExist: true,
-    biosReady: true
+    biosExist: true
   },
   [PROD_KEYS.BULLETS]:
   {
     // url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFkErcd5ZxPZH3d5reCj2ioVSKqW4ZOt3Y5Wd76MTLy1tA-7h-NKheExSfr7h3LOXNa-ZM6DTHwIcP/pub?gid=1855070242&single=true&output=csv',
-    biosExist: true,
-    biosReady: false
+    biosExist: false
   },
   [PROD_KEYS.MENAGERIE]: {
     biosExist: false

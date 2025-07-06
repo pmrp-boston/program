@@ -1,13 +1,11 @@
 {
   "bullets": [
     {
-      "Role": "Announcer",
-      "Show(s)": "Samantha Spade in The Steve Starr Caper",
+      "Roles":{ "Samantha Spade in The Steve Starr Caper": ["Announcer"]},
       "Full Name": "Zack Murphy"
     },
     {
-      "Role": "Samantha Spade",
-      "Show(s)": "Samantha Spade in The Steve Starr Caper",
+      "Roles":{ "Samantha Spade in The Steve Starr Caper": ["Samantha Spade"]},
       "Full Name": "Caroline Debrota"
     }
   ],
