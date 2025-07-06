@@ -9,12 +9,14 @@ export const SHOWS = {
   TRIFLES: 'Trifles',
   SPADE: "Samantha Spade in The Steve Starr Caper",
   AFTER: "After the Thin Man",
+  TREK25: "The Menagerie"
 } as const;
 
 export const PROD_KEYS = {
   DANGEROUS: 'dangerous',
   THIRTEEN: 'thirteen',
   BULLETS: 'bullets',
+  MENAGERIE: 'menagerie',
 }
 
 // This includes keys for all shows currently in the SHOWS list
@@ -25,14 +27,18 @@ export type ProdKeys = typeof PROD_KEYS[keyof typeof PROD_KEYS];
 export interface Person {
   name: string;
   shows: ShowKeys[];
-  roles: string;
+  roles: RolesByShow;
   bio: string;
 }
 
+type RolesByShow = {
+  [key in ShowKeys]: string[];
+};
+
 export interface Show {
   showName: string;
-  writerCredit?: string;
-  adapterCredit?: string;
+  writerCredit?: Person;
+  adapterCredit?: Person;
   directorCredits: Person[];
   description?: string;
   credits: Person[];
@@ -51,20 +57,26 @@ export interface Show {
 // }
 
 // This matches show query params to their spreadsheet urls and state
-export const showInfo: { [key in ProdKeys]: { url: string, biosExist: boolean } } = {
+export const showInfo: { [key in ProdKeys]: { biosExist: boolean, biosReady?: boolean } } = {
   [(PROD_KEYS.DANGEROUS)]:
   {
-    url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFkErcd5ZxPZH3d5reCj2ioVSKqW4ZOt3Y5Wd76MTLy1tA-7h-NKheExSfr7h3LOXNa-ZM6DTHwIcP/pub?output=csv',
-    biosExist: true
+    // url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFkErcd5ZxPZH3d5reCj2ioVSKqW4ZOt3Y5Wd76MTLy1tA-7h-NKheExSfr7h3LOXNa-ZM6DTHwIcP/pub?output=csv',
+    biosExist: true,
+    biosReady: true
   },
   [(PROD_KEYS.THIRTEEN)]:
   {
-    url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDvgsIjFxVnqxPFLdGrBYqVuXGJ8T5ibvw_v9hl2ToJ2yAQZHleGMkhkzVpyNrIVWZzqIlZ1d5IOLN/pub?gid=1373399454&single=true&output=csv',
-    biosExist: true
+    // url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDvgsIjFxVnqxPFLdGrBYqVuXGJ8T5ibvw_v9hl2ToJ2yAQZHleGMkhkzVpyNrIVWZzqIlZ1d5IOLN/pub?gid=1373399454&single=true&output=csv',
+    biosExist: true,
+    biosReady: true
   },
   [PROD_KEYS.BULLETS]:
   {
-    url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFkErcd5ZxPZH3d5reCj2ioVSKqW4ZOt3Y5Wd76MTLy1tA-7h-NKheExSfr7h3LOXNa-ZM6DTHwIcP/pub?gid=1855070242&single=true&output=csv',
+    // url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFkErcd5ZxPZH3d5reCj2ioVSKqW4ZOt3Y5Wd76MTLy1tA-7h-NKheExSfr7h3LOXNa-ZM6DTHwIcP/pub?gid=1855070242&single=true&output=csv',
+    biosExist: true,
+    biosReady: false
+  },
+  [PROD_KEYS.MENAGERIE]: {
     biosExist: false
   }
 }
@@ -77,10 +89,41 @@ export const groupPeopleByShow = (people: Person[]) => {
       if (!grouped[show]) {
         grouped[show] = [];
       }
-      if (!person.roles.includes('Writer') && !person.roles.includes('Director') && !person.roles.includes('Adapted') && !person.roles.includes('Foley')) {
+      const rolesInShow = person.roles[show as ShowKeys] || [];
+      if (!rolesInShow.includes('Writer') && !rolesInShow.includes('Director') && !rolesInShow.includes('Adapted') && !rolesInShow.includes('Foley')) {
         grouped[show]!.push(person);
       }
     });
   });
   return grouped;
+};
+
+interface ProductionCredits {
+  writer: Person | undefined;
+  director: Person[];
+  adapter: Person | undefined;
+  foley: Person[];
+}
+
+export const getShowProdCreds = (show: ShowKeys, people: Person[]) => {
+  const creds: ProductionCredits = { writer: undefined, director: [], adapter: undefined, foley: [] };
+  people.forEach(person => {
+    person.shows.forEach(listShow => {
+      const rolesInShow = person.roles[listShow as ShowKeys] || [];
+      if (listShow === show && rolesInShow.includes('Writer')) {
+        ``
+        creds.writer = person;
+      }
+      if (listShow === show && rolesInShow.includes('Director')) {
+        creds.director.push(person);
+      }
+      if (listShow === show && rolesInShow.includes('Adapted')) {
+        creds.adapter = person;
+      }
+      if (listShow === show && rolesInShow.includes('Foley')) {
+        creds.foley.push(person);
+      }
+    });
+  });
+  return creds;
 };

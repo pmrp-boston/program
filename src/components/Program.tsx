@@ -3,7 +3,7 @@ import Bios from "../components/Bios.js";
 import ResponsiveHeroImage from "../components/ResponsiveHeroImage.js";
 import ATFProgramInfo from "../components/ATFProgramInfo.js";
 import { scroller } from "react-scroll";
-import { Person, Show, groupPeopleByShow, ShowKeys } from "../data.js";
+import { Person, Show, groupPeopleByShow, ShowKeys, getShowProdCreds } from "../data.js";
 import "../App.scss";
 
 const Program = ({ data, showTheme, biosExist }:
@@ -19,10 +19,11 @@ const Program = ({ data, showTheme, biosExist }:
   for (const show in peopleByShow) {
     const showName = show;
     const credits = peopleByShow[show as ShowKeys];
-    const writerCredit = data.find((person) => person.shows.includes(show as ShowKeys) && person.roles.includes("Writer"))?.name;
-    const directorCredits = data.filter((person) => person.shows.includes(show as ShowKeys) && person.roles.includes("Director"));
-    const adapterCredit = data.find((person) => person.shows.includes(show as ShowKeys) && person.roles.match(/Adapted/i))?.name;
-    const foleyCredits = data.filter((person) => person.shows.includes(show as ShowKeys) && person.roles.match(/Foley/i));
+
+    const writerCredit = getShowProdCreds(show as ShowKeys, data).writer;
+    const adapterCredit = getShowProdCreds(show as ShowKeys, data).adapter;
+    const directorCredits = getShowProdCreds(show as ShowKeys, data).director;
+    const foleyCredits = getShowProdCreds(show as ShowKeys, data).foley;
     const showData = {
       [show as ShowKeys]: {
         showName,
@@ -35,7 +36,7 @@ const Program = ({ data, showTheme, biosExist }:
     };
     showInfo.push(showData[show as ShowKeys]);
   }
-  console.log(showInfo)
+  console.log('Parsed show info:', showInfo)
   // return showInfo
 
 

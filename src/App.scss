@@ -43,7 +43,8 @@ li {
   padding: 15px 0;
   display: flex;
   align-items: center;
-  gap: 15px; /* Add some space between image and text */
+  gap: 15px;
+  /* Add some space between image and text */
 }
 
 li:last-child {
@@ -68,9 +69,11 @@ p {
 img {
   // max-width: 80px; /* Slightly smaller image */
   height: auto;
-  border-radius: 4px; /* Slightly rounded corners */
+  border-radius: 4px;
+  /* Slightly rounded corners */
   display: block;
 }
+
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,600;1,400;1,600&family=Limelight&family=Teko&display=swap");
 
 div.dangerous {
@@ -80,6 +83,11 @@ div.dangerous {
 
 div.thirteen {
   $current-theme: themes.$thirteen-theme !global;
+  @include apply-theme();
+}
+
+div.menagerie {
+  $current-theme: themes.$menagerie-theme !global;
   @include apply-theme();
 }
 

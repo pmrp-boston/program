@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import './App.scss';
-import * as XLSX from 'xlsx';
 import Program from './components/Program';
-import { Person, showInfo } from './data';
-import Papa from 'papaparse';
+import { Person, ProdKeys, PROD_KEYS, ShowKeys } from './data';
+import jsonData from './assets/showData.json';
 import Menu from './components/Menu';
 
 export default function App() {
@@ -11,78 +10,37 @@ export default function App() {
   const [showTheme, setShowTheme] = useState<string>('');
   const [biosExist, setBiosExist] = useState<boolean>(false);
 
-  const fetchData = async (show: string | null) => {
-    if (!show) {
-      console.error('No show parameter provided');
-      return;
-    }
+  const readData = (show: ProdKeys) => {
     try {
-      const showUrl = showInfo[show].url;
-      const response = await fetch(showUrl);
-      const csvData = await response.text();
-      const extractedData = processData(csvData);
-      console.log(extractedData);
+      const extractedData = processJsonData((jsonData as any)[show]);
+      console.log('Parsed JSON Data:', extractedData);
       setData(extractedData);
     } catch (error) {
-      console.error('Error fetching data from Google Sheet:', error);
+      console.error('Error reading data from JSON:', error);
     }
   };
 
-  const readData = async () => {
-    try {
-      const response = await fetch('/assets/currentData.csv');
-      const csvData = await response.text();
-
-      Papa.parse(csvData, {
-        header: true,
-        complete: (results: Papa.ParseResult<any>) => {
-          const extractedData = processCsvData(results.data);
-          console.log('Parsed CSV Data:', extractedData);
-          setData(extractedData);
-        },
-      });
-    } catch (error) {
-      console.error('Error reading data from CSV:', error);
-    }
-  };
-
-  const processCsvData = (csvData: any[]): Person[] => {
-    return csvData.map((row: any) => ({
+  const processJsonData = (jsonData: any[]): Person[] => {
+    console.log(`JSON data:`, jsonData);
+    return jsonData.map((row: any) => ({
       name: row["Full Name"],
-      shows: (row["Show(s)"] || '').split(',').map((show: string) => show.trim()),
-      roles: row.Role,
+      shows: Object.keys(row.Roles) as ShowKeys[], // Assuming Roles is an object with show keys
+      roles: row.Roles,
       bio: row.Bio,
     })).filter((person: Person) => person.name);
   }
 
-  const processData = (csvData: string): Person[] => {
-    const workbook = XLSX.read(csvData, { type: 'string', raw: true });
-    const sheetName = workbook.SheetNames[0];
-    const worksheet = workbook.Sheets[sheetName];
-    const rawData: any[][] = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-    const extractedData: Person[] = rawData.slice(1).map((row) => ({
-      name: row[1],   // Column B
-      shows: row[2]?.split(', '),    // Column D
-      roles: row[3],    // Column E
-      bio: row[4],      // Column F
-    })).filter(person => person.name); // Filter out rows with no name
-    return extractedData;
-  }
-
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
+    const showParam = urlParams.get('show');
 
-    if (urlParams.has('show')) {
-      const showParam = urlParams.get('show');
-      if (showParam !== null) {
-        showInfo[showParam].biosExist ? setBiosExist(true) : setBiosExist(false);
-        fetchData(showParam);
-        setShowTheme(showParam)
-      }
+    if (urlParams.has('show') && showParam && Object.values(PROD_KEYS).includes(showParam)) {
+      const validShowParam = showParam as ProdKeys;
+      console.log('show param exists, reading data for', validShowParam)
+      readData(validShowParam);
+      setShowTheme(validShowParam)
     } else {
-      console.log('reading data')
-      setBiosExist(true)
-      readData();
+      console.log('no show param exists')
     }
   }, []);
 
@@ -94,7 +52,7 @@ export default function App() {
         <div className="backToTop">
           <span>Back to Top</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" fill="currentColor" className="bi bi-arrow-up" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5" />
+            <path fillRule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5" />
           </svg>
         </div>
       </a>

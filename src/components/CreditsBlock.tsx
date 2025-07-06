@@ -1,5 +1,5 @@
 import useWindowDimensions from "../useWindowDimensions.tsx";
-import { Person, Show } from '../data.js';
+import { Person, Show, ShowKeys } from '../data.js';
 
 const CreditsBlock = ({ show, goToBio, crewBlock }: { show: Show, goToBio: (name: string) => void, crewBlock: boolean }) => {
   const { showName, writerCredit, adapterCredit, directorCredits, description, credits, foleyCredits } = show;
@@ -29,21 +29,31 @@ const CreditsBlock = ({ show, goToBio, crewBlock }: { show: Show, goToBio: (name
                 </span></h4>
             </a>
           )}
+          {writerCredit && (
+            <a onClick={() => goToBio(writerCredit?.name)} className="highlightCredit">
+              <h4 className="highlightCredit">Written by {writerCredit?.name}
+                <span className="material-symbols-outlined">
+                  history_edu
+                </span></h4>
 
-          {writerCredit && <h4 className="highlightCredit">Written by {writerCredit}</h4>}
-          {adapterCredit && <h4 className="highlightCredit">Adapted by {adapterCredit}</h4>}
+            </a>
+          )}
+          {adapterCredit &&
+            <h4 className="highlightCredit">Adapted by {adapterCredit.name}<span className="material-symbols-outlined">
+              history_edu
+            </span></h4>}
 
         </div>
       </div>
       {description && <p>{description}</p>}
       {credits.map((credit) => (
-        <SingleCredit credit={credit} goToBio={goToBio} />
+        <SingleCredit show={showName as ShowKeys} credit={credit} goToBio={goToBio} />
       ))}
       {foleyCredits.length > 0 && (
         <div>
           {!crewBlock && <div className="foleyDivider"></div>}
           {foleyCredits.map((credit) => (
-            <SingleCredit credit={credit} goToBio={goToBio} />
+            <SingleCredit show={showName as ShowKeys} credit={credit} goToBio={goToBio} />
           ))}
         </div>
       )}
@@ -51,17 +61,18 @@ const CreditsBlock = ({ show, goToBio, crewBlock }: { show: Show, goToBio: (name
   );
 };
 
-const SingleCredit = ({ credit, goToBio }: { credit: Person, goToBio: (name: string) => void }) => {
+const SingleCredit = ({ show, credit, goToBio }: { show: ShowKeys, credit: Person, goToBio: (name: string) => void }) => {
   const { name, roles } = credit;
   const { width } = useWindowDimensions();
-  const wrapFixRole = roles.length > 10 && width < 400;
+  const roleString = roles[show].join(', ');
+  const wrapFixRole = roleString.length > 10 && width < 400;
   const wrapFixName = name.length > 10 && width < 400;
 
 
 
   return (
     <div className="singleCredit">
-      <span className={`singleCredit-role ${wrapFixRole ? "wrapFix" : "noFix"}`}>{roles}</span>
+      <span className={`singleCredit-role ${wrapFixRole ? "wrapFix" : "noFix"}`}>{roleString}</span>
       <span className="dots"></span>
       <a onClick={() => goToBio(name)} className={`singleCredit-name ${wrapFixName ? "wrapFix" : "noFix"}`}>
         {name}
