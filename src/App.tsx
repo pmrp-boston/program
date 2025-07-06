@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.scss';
 import Program from './components/Program';
-import { Person, ProdKeys, PROD_KEYS, ShowKeys } from './data';
+import { Person, ProdKeys, PROD_KEYS, ShowKeys, showInfo } from './data';
 import jsonData from './assets/showData.json';
 import Menu from './components/Menu';
 
@@ -37,6 +37,7 @@ export default function App() {
     if (urlParams.has('show') && showParam && Object.values(PROD_KEYS).includes(showParam)) {
       const validShowParam = showParam as ProdKeys;
       console.log('show param exists, reading data for', validShowParam)
+      setBiosExist(showInfo[validShowParam as ProdKeys].biosExist);
       readData(validShowParam);
       setShowTheme(validShowParam)
     } else {

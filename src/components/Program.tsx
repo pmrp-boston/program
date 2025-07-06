@@ -12,8 +12,17 @@ const Program = ({ data, showTheme, biosExist }:
     showTheme: string,
     biosExist: boolean
   }) => {
-  const scrollToBio = (name: string) => scroller.scrollTo(name, {});
-  const peopleByShow = groupPeopleByShow(data);
+  const scrollToBio = (name: string) => {
+    scroller.scrollTo(name, {
+      callback: () => {
+        const element = document.getElementById(name);
+        if (element) {
+          element.focus();
+        }
+      }
+    });
+  };
+  const peopleByShow: { [key in ShowKeys]: Person[] } = groupPeopleByShow(data);
 
   const showInfo = [] as Show[];
   for (const show in peopleByShow) {
@@ -36,7 +45,7 @@ const Program = ({ data, showTheme, biosExist }:
     };
     showInfo.push(showData[show as ShowKeys]);
   }
-  console.log('Parsed show info:', showInfo)
+  console.log(showInfo)
   // return showInfo
 
 

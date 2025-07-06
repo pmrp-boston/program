@@ -90,7 +90,7 @@ export const groupPeopleByShow = (people: Person[]) => {
         grouped[show] = [];
       }
       const rolesInShow = person.roles[show as ShowKeys] || [];
-      if (!rolesInShow.includes('Writer') && !rolesInShow.includes('Director') && !rolesInShow.includes('Adapted') && !rolesInShow.includes('Foley')) {
+      if (!rolesInShow.some(role => /Writer/i.test(role)) && !rolesInShow.some(role => /Director/i.test(role)) && !rolesInShow.some(role => /Adapted/i.test(role)) && !rolesInShow.some(role => /Foley/i.test(role))) {
         grouped[show]!.push(person);
       }
     });
@@ -110,17 +110,16 @@ export const getShowProdCreds = (show: ShowKeys, people: Person[]) => {
   people.forEach(person => {
     person.shows.forEach(listShow => {
       const rolesInShow = person.roles[listShow as ShowKeys] || [];
-      if (listShow === show && rolesInShow.includes('Writer')) {
-        ``
+      if (listShow === show && rolesInShow.some(role => /Writer/i.test(role))) {
         creds.writer = person;
       }
-      if (listShow === show && rolesInShow.includes('Director')) {
+      if (listShow === show && rolesInShow.some(role => /Director/i.test(role))) {
         creds.director.push(person);
       }
-      if (listShow === show && rolesInShow.includes('Adapted')) {
+      if (listShow === show && rolesInShow.some(role => /Adapted/i.test(role))) {
         creds.adapter = person;
       }
-      if (listShow === show && rolesInShow.includes('Foley')) {
+      if (listShow === show && rolesInShow.some(role => /Foley/i.test(role))) {
         creds.foley.push(person);
       }
     });
