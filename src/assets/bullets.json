@@ -1,0 +1,22 @@
+{
+  "shows": [
+      {
+      "showName": "Samantha Spade and the Steve Starr Caper",
+       "directorCredits": ["Jeremy Holstein", "Tori Queeno"],
+       "description": "",
+       "credits": [
+          {
+            "roles": ["Announcer"],
+            "name": "Zack Murphy"
+          },
+          {
+            "roles":["Samantha Spade"],
+            "name": "Caroline Debrota"
+          }
+       ],
+       "foleyCredits": []
+      }
+    ],
+  "bios": [],
+  "fullTitle": "Bullets Over Boston"
+}

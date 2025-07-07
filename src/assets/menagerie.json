@@ -1,0 +1,107 @@
+{
+  "shows": [{
+    "showName": "The Menagerie",
+    "directorCredits": [{ "name": "Elizabeth Salazar", "phrase": "Directed and adapted by Elizabeth Salazar from the original Gene Roddenberry teleplay" }],
+    "description": "",
+    "credits": [
+    {
+      "name": "Karen Sarao",
+      "roles": [
+          "Captain Jane T. Kirk",
+          "Survivor"
+        ]
+    },
+    {
+      "name": "Tori Queeno",
+      "roles": [
+          "Captain Christina Pike"
+        ]
+    },
+    {
+      "name": "Adria Kyne",
+      "roles": [
+          "Ms. Spock"
+        ]
+    },
+    {
+      "name": "Benedict Dawn-Cross",
+      "roles": [
+          "Vina"
+        ]
+    },
+    {
+      "name": "Caitlin Mason",
+      "roles": [
+          "Ms. Tyler",
+          "Dispatch",
+          "Security Chief"
+        ]
+    },
+    {
+      "name": "Catherine Bromberg",
+      "roles": [
+          "Doctor McCoy",
+          "Talosian Magistrate",
+          "Dr. Haskins"
+        ]
+    },
+    {
+      "name": "The Honorable Rose Martin",
+      "roles": [
+          "Ms. Scott",
+          "Dr. Boyce",
+          "Geologist"
+        ]
+    },
+    {
+      "name": "Naomi Ibasitas",
+      "roles": [
+          "Ms. Pitcairn",
+          "Lt. Sulu",
+          "Humboldt",
+          "Trader"
+        ]
+    },
+    {
+      "name": "Robert Thorpe II",
+      "roles": [
+          "Lt. Uhura",
+          "Mr. Colt",
+          "Mr. Piper"
+        ]
+    },
+    {
+      "name": "Elizabeth Salazar",
+      "roles": [
+          "Commodore Mendez"
+        ]
+    },
+    {
+      "name": "Jason Smith",
+      "roles": [
+          "Number One",
+          "Computer"
+        ]
+    },
+    {
+      "name": "Kitty Drexel",
+      "roles": [
+          "Talosian Keeper"
+        ]
+    }
+    ],
+    "foleyCredits": [
+      {
+        "name": "Jaimie Carlson",
+        "roles": [
+          "Foley"
+        ]
+      }
+    ]
+  }],
+  "imgSrc": "/menageriebanner.png",
+  "imgAlt": "A blocky stylized drawing of a woman in a Starfleet command uniform sitting in a futuristic wheelchair.",
+  "fullTitle": "Gender-Swapped Star Trek: The Menagerie",
+  "introduction": "On July 18th, for one night only the PMRP will reprise our Arisia 2025 Gender Swapped Star Trek performance of, \"The Menagerie\". Admission is free, with donations gratefully accepted. While not required, we encourage you to register in advance.",
+  "bios": []
+}
