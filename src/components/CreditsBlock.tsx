@@ -1,10 +1,8 @@
 import useWindowDimensions from "../useWindowDimensions.tsx";
 import { Person, Show, ShowKeys } from '../data.js';
 
-const CreditsBlock = ({ show, goToBio, crewBlock }: { show: Show, goToBio: (name: string) => void, crewBlock: boolean }) => {
+const CreditsBlock = ({ show, biosExist, goToBio, crewBlock }: { show: Show, biosExist: boolean, goToBio: (name: string) => void, crewBlock: boolean }) => {
   const { showName, writerCredit, adapterCredit, directorCredits, description, credits, foleyCredits } = show;
-
-
   return (
     <div className="programBlock">
       <div className="programBlock-header">
@@ -13,25 +11,19 @@ const CreditsBlock = ({ show, goToBio, crewBlock }: { show: Show, goToBio: (name
         <div className="programBlock-header--highlightCredits">
 
           {directorCredits.length > 0 && (
-            <a onClick={() => goToBio(directorCredits[0].name)} className="highlightCredit">
-              <h4 className="highlightCredit">Directed by {directorCredits[0].name}
-                <span className="material-symbols-outlined">
-                  history_edu
-                </span></h4>
-
-            </a>
+            <HighlightCredit name={directorCredits[0].name} defaultPhrase={`Directed by ${directorCredits[0].name}`} biosReady={biosExist} goToBio={goToBio} phrase={directorCredits[0].phrase} />
           )}
           {directorCredits.length > 1 && (
-            <a onClick={() => goToBio(directorCredits[1].name)} className="highlightCredit">
-              <h4 className="highlightCredit">Assistant Directed by {directorCredits[1].name}
+            <a aria-role="button" onClick={() => goToBio(directorCredits[1].name)} className={`highlightCredit${biosExist ? "" : "-noBios"}`}>
+              <h4 className={`highlightCredit${biosExist ? "" : "-noBios"}`}>Assistant Directed by {directorCredits[1].name}
                 <span className="material-symbols-outlined">
                   history_edu
                 </span></h4>
             </a>
           )}
           {writerCredit && (
-            <a onClick={() => goToBio(writerCredit?.name)} className="highlightCredit">
-              <h4 className="highlightCredit">Written by {writerCredit?.name}
+            <a aria-role="button" onClick={() => goToBio(writerCredit.name)} className={`highlightCredit${biosExist ? "" : "-noBios"}`}>
+              <h4 className={`highlightCredit${biosExist ? "" : "-noBios"}`}>{writerCredit.phrase || `Written by ${writerCredit.name}`}
                 <span className="material-symbols-outlined">
                   history_edu
                 </span></h4>
@@ -39,7 +31,7 @@ const CreditsBlock = ({ show, goToBio, crewBlock }: { show: Show, goToBio: (name
             </a>
           )}
           {adapterCredit &&
-            <h4 className="highlightCredit">Adapted by {adapterCredit.name}<span className="material-symbols-outlined">
+            <h4 className={`highlightCredit${biosExist ? "" : "-noBios"}`}>{adapterCredit.phrase || `Adapted by ${adapterCredit}`}<span className="material-symbols-outlined">
               history_edu
             </span></h4>}
 
@@ -61,20 +53,42 @@ const CreditsBlock = ({ show, goToBio, crewBlock }: { show: Show, goToBio: (name
   );
 };
 
+const HighlightCredit = ({ name, defaultPhrase, biosReady, goToBio, phrase = "" }: { name: string, defaultPhrase: string, biosReady: boolean, goToBio: (name: string) => void, phrase?: string }) => {
+  if (biosReady) {
+    return (
+      <a aria-role="button" onClick={() => goToBio(name)} className={`highlightCredit${biosReady ? "" : "-noBios"}`}>
+        <h4 className={`highlightCredit${biosReady ? "" : "-noBios"}`}>{phrase || defaultPhrase}
+          <span className="material-symbols-outlined">
+            history_edu
+          </span>
+        </h4>
+      </a>
+    );
+  } else {
+    return (
+      <h4 className={`highlightCredit${biosReady ? "" : "-noBios"}`}>
+        {phrase || defaultPhrase}
+      </h4>
+    );
+  }
+
+};
+
 const SingleCredit = ({ show, credit, goToBio, biosReady = false }: { show: ShowKeys, credit: Person, goToBio: (name: string) => void, biosReady?: boolean }) => {
   const { name, roles } = credit;
+  console.log(`SingleCredit: ${name} - ${roles}`);
   const { width } = useWindowDimensions();
-  const roleString = roles[show].join(', ');
-  const wrapFixRole = roleString.length > 10 && width < 400;
+  // const roleString = roles.join(', ');
+  const wrapFixRole = roles.length > 10 && width < 400;
   const wrapFixName = name.length > 10 && width < 400;
 
 
 
   return (
     <div className="singleCredit">
-      <span className={`singleCredit-role ${wrapFixRole ? "wrapFix" : "noFix"}`}>{roleString}</span>
+      <span className={`singleCredit-role ${wrapFixRole ? "wrapFix" : "noFix"}`}>{roles.join(', ')}</span>
       <span className="dots"></span>
-      {biosReady && <a onClick={() => goToBio(name)} className={`singleCredit-name ${wrapFixName ? "wrapFix" : "noFix"}`}>
+      {biosReady && <a aria-role="button" onClick={() => goToBio(name)} className={`singleCredit-name ${wrapFixName ? "wrapFix" : "noFix"}`}>
         {name}
         <span className="material-symbols-outlined">
           history_edu

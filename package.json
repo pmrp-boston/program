@@ -1,7 +1,7 @@
 {
-  "name": "dangerous-adventures-program",
+  "name": "pmrp-program",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "bootstrap-icons": "^1.11.3",
+    "fontawesome-free": "^1.0.4",
     "papaparse": "^5.5.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

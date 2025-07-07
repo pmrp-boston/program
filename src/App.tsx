@@ -1,52 +1,31 @@
 import { useState, useEffect, useCallback } from 'react';
 import './App.scss';
 import Program from './components/Program';
-import { Person, ProdKeys, PROD_KEYS, ShowKeys, showInfo } from './data';
-import jsonData from './assets/showData.json';
+import { ProdKeys, PROD_KEYS, showInfo, Show, Bio } from './data';
 import Menu from './components/Menu';
-
-function OtherComponent1() {
-  return (
-    <div>
-      <h2>This is component 1!</h2>
-      <p>It can be swapped with the Program component.</p>
-    </div>
-  );
-}
-
-function OtherComponent2() {
-  return (
-    <div>
-      <h2>This is component 2!</h2>
-      <p>It can also be swapped with the Program component.</p>
-    </div>
-  );
-}
+import Directions from './components/Directions';
+import Information from './components/Information';
 
 export default function App() {
-  const [data, setData] = useState<Person[]>([]);
+  const [data, setData] = useState<{
+    shows: Show[],
+    fullTitle: string,
+    imgSrc: string,
+    imgAlt: string,
+    introduction: string,
+    bios: Bio[]
+  }>({ shows: [], fullTitle: '', imgSrc: '', imgAlt: '', introduction: '', bios: [] });
   const [showTheme, setShowTheme] = useState<string>('');
-  const [biosExist, setBiosExist] = useState<boolean>(false);
   const [activeComponent, setActiveComponent] = useState<string>('program');
 
-  const readData = useCallback((show: ProdKeys) => {
+  const readData = useCallback(async (show: ProdKeys) => {
     try {
-      const extractedData = processJsonData((jsonData as any)[show]);
-      console.log('Parsed JSON Data:', extractedData);
-      setData(extractedData);
+      const module = await import(`./assets/${show}.json`);
+      const showData = module.default;
+      setData(showData);
     } catch (error) {
       console.error('Error reading data from JSON:', error);
     }
-  }, []);
-
-  const processJsonData = useCallback((jsonData: any[]): Person[] => {
-    console.log(`JSON data:`, jsonData);
-    return jsonData.map((row: any) => ({
-      name: row["Full Name"],
-      shows: Object.keys(row.Roles) as ShowKeys[], // Assuming Roles is an object with show keys
-      roles: row.Roles,
-      bio: row.Bio,
-    })).filter((person: Person) => person.name);
   }, []);
 
   useEffect(() => {
@@ -56,7 +35,6 @@ export default function App() {
     if (urlParams.has('show') && showParam && Object.values(PROD_KEYS).includes(showParam)) {
       const validShowParam = showParam as ProdKeys;
       console.log('show param exists, reading data for', validShowParam)
-      setBiosExist(showInfo[validShowParam as ProdKeys].biosExist);
       readData(validShowParam);
       setShowTheme(validShowParam)
     } else {
@@ -73,19 +51,40 @@ export default function App() {
     if (activeComponent === 'program') {
       return (
         <div aria-live="polite" className="content">
-          <Program data={data} showTheme={showTheme} biosExist={biosExist} />
+          <Program
+            data={data.shows}
+            imgAlt={data.imgAlt}
+            imgSrc={data.imgSrc}
+            fullTitle={data.fullTitle}
+            intro={data.introduction}
+            showTheme={showTheme}
+            bios={data.bios} />
         </div>
       );
-    } else if (activeComponent === 'other1') {
+    } else if (activeComponent === 'directions') {
       return (
         <div aria-live="polite" className="content">
-          <OtherComponent1 />
+          <Directions />
         </div>
       );
-    } else {
+    } else if (activeComponent === 'information') {
       return (
         <div aria-live="polite" className="content">
-          <OtherComponent2 />
+          <Information />
+        </div>
+      );
+    }
+    else {
+      return (
+        <div aria-live="polite" className="content">
+          <Program
+            data={data.shows}
+            imgAlt={data.imgAlt}
+            imgSrc={data.imgSrc}
+            fullTitle={data.fullTitle}
+            intro={data.introduction}
+            showTheme={showTheme}
+            bios={data.bios} />
         </div>
       );
     }

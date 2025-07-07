@@ -3,15 +3,20 @@ import Bios from "../components/Bios.js";
 import ResponsiveHeroImage from "../components/ResponsiveHeroImage.js";
 import ATFProgramInfo from "../components/ATFProgramInfo.js";
 import { scroller } from "react-scroll";
-import { Person, Show, groupPeopleByShow, ShowKeys, getShowProdCreds } from "../data.js";
+import { Show, Bio } from "../data.js";
 import "../App.scss";
 
-const Program = ({ data, showTheme, biosExist }:
+const Program = ({ data, imgAlt, imgSrc, fullTitle, intro, bios }:
   {
-    data: Person[],
+    data: Show[],
+    imgAlt: string,
+    imgSrc: string,
+    fullTitle: string,
+    intro: string,
     showTheme: string,
-    biosExist: boolean
+    bios: Bio[]
   }) => {
+  const biosExist = bios.length > 0;
   const scrollToBio = (name: string) => {
     scroller.scrollTo(name, {
       callback: () => {
@@ -22,53 +27,26 @@ const Program = ({ data, showTheme, biosExist }:
       }
     });
   };
-  const peopleByShow: { [key in ShowKeys]: Person[] } = groupPeopleByShow(data);
-
-  const showInfo = [] as Show[];
-  for (const show in peopleByShow) {
-    const showName = show;
-    const credits = peopleByShow[show as ShowKeys];
-
-    const writerCredit = getShowProdCreds(show as ShowKeys, data).writer;
-    const adapterCredit = getShowProdCreds(show as ShowKeys, data).adapter;
-    const directorCredits = getShowProdCreds(show as ShowKeys, data).director;
-    const foleyCredits = getShowProdCreds(show as ShowKeys, data).foley;
-    const showData = {
-      [show as ShowKeys]: {
-        showName,
-        writerCredit,
-        adapterCredit,
-        directorCredits,
-        credits,
-        foleyCredits
-      },
-    };
-    showInfo.push(showData[show as ShowKeys]);
-  }
-  console.log(showInfo)
-  // return showInfo
 
 
   return (
     <div>
-      <header>
-        <h4 className="preHeader">The Post Meridian Radio Players Present</h4>
-        <ResponsiveHeroImage imgAlt="Two images on either side of the title - 'Bullets Over Boston'. On the left: an outline of a woman in a trenchcoat and fedora shrouded in shadow. On the right: a stylized drawing of a finely dressed man and woman in eveningwear with a small dog." imgSrc={`./${showTheme}banner.jpg`} />
-      </header>
-      <div className="content">
-        <div className="credits">
-          <ATFProgramInfo />
-          {showInfo.map((show) => (
-            <CreditsBlock show={show} goToBio={scrollToBio} crewBlock={!show.showName} />
-          ))}
-          {/*<BTFProgramInfo />*/}
-        </div>
-        {biosExist && (
-          <div>
-            <Bios credits={data} />
-          </div>
-        )}
+      <div className="credits">
+        <header>
+          <h4 className="preHeader">The Post Meridian Radio Players Present</h4>
+          <ResponsiveHeroImage imgAlt={imgAlt} imgSrc={imgSrc} />
+        </header>
+        <ATFProgramInfo fullTitle={fullTitle} intro={intro} />
+        {data.map((show) => (
+          <CreditsBlock show={show} biosExist={biosExist} goToBio={scrollToBio} crewBlock={!show.showName} />
+        ))}
+        {/*<BTFProgramInfo />*/}
       </div>
+      {biosExist && (
+        <div>
+          <Bios bios={bios} />
+        </div>
+      )}
 
       <footer>{/* <AuditionFooter /> */}</footer>
     </div>

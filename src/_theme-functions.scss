@@ -12,6 +12,15 @@
 }
 
 @mixin apply-theme() {
+  .topMenu {
+    background-color: theme("background-neutral");
+
+    a {
+      color: theme("menu-links");
+      text-emphasis: none;
+    }
+  }
+
   .wrapper {
     font-family: "Raleway", sans-serif;
     margin: auto;
@@ -70,153 +79,30 @@
     color: theme("text-highlight");
   }
 
-  .content {
-    margin: 2px;
-  }
-
-  .backToTop {
-    right: 0;
-    position: fixed;
-    bottom: 0;
-    padding: 1em;
-    background: white;
-    border-radius: 100%;
-    margin: 1em;
-
-    span {
-      display: none;
+  .showInfo {
+    h2 {
+      font-size: 2em;
+      text-align: center;
     }
   }
+
+
 
   .programBlock {
     background-color: theme("background-neutral");
-    // border: 1px solid black;
-    border-radius: 5px;
-    padding: 16px 12px;
-    margin: 24px 0;
 
     .foleyDivider {
       border: 1px solid theme("text-secondary");
-      width: 50%;
-      margin-top: 20px;
-      display: block;
-      margin-left: 25%;
-      left: 0;
-    }
-
-    &-header {
-      h3 {
-        font-size: 3em;
-      }
-
-      &--highlightCredits {
-        align-items: center;
-        text-align: center;
-      }
-    }
-
-    .highlightCredit {
-      display: block;
-      font-size: 1.25em;
-
-      span.material-symbols-outlined {
-        vertical-align: middle;
-      }
-    }
-
-    h3 {
-      margin: 0;
-      text-align: center;
-    }
-
-    .wrapFix {
-      font-size: 0.85em;
-    }
-
-    .singleCredit {
-      @media (min-width: 500px) {
-        display: flex;
-      }
-
-      padding: 1em 0;
-
-      .dots {
-        content: "";
-        margin-top: auto;
-        margin-bottom: 4px;
-        border-bottom: 1px dashed black;
-        flex-grow: 2;
-
-        @media (max-width: 500px) {
-          display: none;
-        }
-      }
-
-      &-name {
-        text-align: right;
-        align-self: flex-end;
-
-        @media (max-width: 500px) {
-          flex-direction: column;
-          display: flex;
-
-          &::before {
-            content: '';
-            display: inline-block;
-            border-bottom: 1px dashed black;
-            width: 100%;
-            margin: 0 0.25em;
-          }
-        }
-
-        // flex-shrink: 0;
-
-      }
-
-      &-role {
-        align-self: flex-end;
-        max-width: 55%;
-        flex-shrink: 0;
-      }
     }
   }
 
   .biosBlock {
     background-color: theme("background-neutral");
 
-    * {
-      margin: 0;
+    &::after {
+      border: 1px solid theme("text-secondary");
     }
 
-    &-title {
-      text-align: center;
-      padding-top: 8px;
-    }
-
-    &-singleBio {
-      padding: 16px;
-      margin-bottom: 16px;
-
-      &--title {
-        text-align: center;
-        margin-bottom: 8px;
-      }
-
-      &::after {
-        content: "";
-        border: 1px solid theme("text-secondary");
-        width: 50%;
-        margin-top: 20px;
-        position: absolute;
-        display: block;
-        margin-left: 25%;
-        left: 0;
-      }
-
-      &:last-child::after {
-        display: none;
-      }
-    }
   }
 
   .auditionFooter {

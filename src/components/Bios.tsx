@@ -1,8 +1,8 @@
-import { Person } from "../data.js";
+import { Person, Bio } from "../data.js";
 import { Element } from "react-scroll";
 
-const Bios = ({credits}: {credits: Person[]}) => {
-  const compare = (a: Person, b: Person) => {
+const Bios = ({ bios }: { bios: Bio[] }) => {
+  const compare = (a: Bio, b: Bio) => {
     if (a.name < b.name) {
       return -1;
     }
@@ -12,13 +12,13 @@ const Bios = ({credits}: {credits: Person[]}) => {
     return 0;
   };
 
-  credits.sort(compare);
+  bios.sort(compare);
 
   return (
     <div className="biosBlock">
       <h3 className="biosBlock-title">Cast & Crew Bios</h3>
       <div className="biosBlock-wrapper">
-        {credits.map((bio) => {
+        {bios.map((bio) => {
           if (!bio.bio) return null; // Skip if no name
           return <SingleBio name={bio.name} bioText={bio.bio} />;
         })}
@@ -27,7 +27,7 @@ const Bios = ({credits}: {credits: Person[]}) => {
   );
 };
 
-const SingleBio = ({ name, bioText }: {name: string, bioText: string}) => {
+const SingleBio = ({ name, bioText }: { name: string, bioText: string }) => {
   return (
     <Element name={name}>
       <div className="biosBlock-singleBio" id={name}>
