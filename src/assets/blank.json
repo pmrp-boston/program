@@ -1,0 +1,15 @@
+{
+  "shows": {
+    "showName": "",
+    "directorCredits": [{ "name": "", "phrase": "" }],
+    "writerCredit": { "name": "", "phrase": "" },
+    "description": "",
+    "credits": [],
+    "foleyCredits": []
+  },
+  "imgSrc": "",
+  "imgAlt": "",
+  "fullTitle": "",
+  "introduction": "",
+  "bios": []
+}
