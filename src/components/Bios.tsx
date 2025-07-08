@@ -1,5 +1,4 @@
-import { Person, Bio } from "../data.js";
-import { Element } from "react-scroll";
+import { Bio } from "../data.js";
 
 const Bios = ({ bios }: { bios: Bio[] }) => {
   const compare = (a: Bio, b: Bio) => {
@@ -29,15 +28,14 @@ const Bios = ({ bios }: { bios: Bio[] }) => {
 
 const SingleBio = ({ name, bioText }: { name: string, bioText: string }) => {
   return (
-    <Element name={name}>
+    <div id={name}>
       <div className="biosBlock-singleBio" id={name}>
         <h4 className="biosBlock-singleBio--title">{name}</h4>
         <div className="biosBlock-singleBio--copyText">{bioText}</div>
       </div>
-    </Element>
+    </div>
   );
 };
 
-// const SingleBioWithScroll = ScrollElement(SingleBio);
 
 export default Bios;

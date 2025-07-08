@@ -13,11 +13,10 @@
 
 @mixin apply-theme() {
   .topMenu {
-    background-color: theme("background-neutral");
+    background-color: theme("body-background");
 
     a {
       color: theme("menu-links");
-      text-emphasis: none;
     }
   }
 
@@ -44,52 +43,22 @@
       sans-serif;
       margin: 0;
     }
-
-    a {
-      text-decoration: none;
-      font-weight: bolder;
-      color: theme("highlight");
-      cursor: pointer;
-    }
   }
 
-  header {
-    text-align: center;
-
-    .preHeader {
-      text-transform: uppercase;
-      font-family: "Limelight", sans-serif;
-      margin: 0;
-      color: white;
-      background-color: black;
-    }
-
-    h3 {
-      margin-top: 4px;
-    }
-
-    .heroBannerImg {
-      img {
-        width: 100%;
-      }
-    }
+  .content {
+    background-color: theme("body-background");
+    color: theme("text-primary");
+    font-family: "Raleway", sans-serif;
   }
 
   .highlightText {
     color: theme("text-highlight");
   }
 
-  .showInfo {
-    h2 {
-      font-size: 2em;
-      text-align: center;
-    }
-  }
-
 
 
   .programBlock {
-    background-color: theme("background-neutral");
+    background-color: theme("body-background");
 
     .foleyDivider {
       border: 1px solid theme("text-secondary");
@@ -97,7 +66,7 @@
   }
 
   .biosBlock {
-    background-color: theme("background-neutral");
+    background-color: theme("body-background");
 
     &::after {
       border: 1px solid theme("text-secondary");
@@ -106,7 +75,7 @@
   }
 
   .auditionFooter {
-    background-color: theme("background-neutral");
+    background-color: theme("body-background");
     padding: 16px;
     text-align: center;
     font-size: larger;

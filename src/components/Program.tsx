@@ -2,32 +2,20 @@ import CreditsBlock from "../components/CreditsBlock.js";
 import Bios from "../components/Bios.js";
 import ResponsiveHeroImage from "../components/ResponsiveHeroImage.js";
 import ATFProgramInfo from "../components/ATFProgramInfo.js";
-import { scroller } from "react-scroll";
 import { Show, Bio } from "../data.js";
 import "../App.scss";
 
-const Program = ({ data, imgAlt, imgSrc, fullTitle, intro, bios }:
+const Program = ({ data, imgAlt, imgSrc, fullTitle, intro, bios, ticketsLink = '' }:
   {
     data: Show[],
     imgAlt: string,
     imgSrc: string,
     fullTitle: string,
     intro: string,
-    showTheme: string,
-    bios: Bio[]
+    bios: Bio[],
+    ticketsLink?: string
   }) => {
   const biosExist = bios.length > 0;
-  const scrollToBio = (name: string) => {
-    scroller.scrollTo(name, {
-      callback: () => {
-        const element = document.getElementById(name);
-        if (element) {
-          element.focus();
-        }
-      }
-    });
-  };
-
 
   return (
     <div>
@@ -36,9 +24,9 @@ const Program = ({ data, imgAlt, imgSrc, fullTitle, intro, bios }:
           <h4 className="preHeader">The Post Meridian Radio Players Present</h4>
           <ResponsiveHeroImage imgAlt={imgAlt} imgSrc={imgSrc} />
         </header>
-        <ATFProgramInfo fullTitle={fullTitle} intro={intro} />
+        <ATFProgramInfo fullTitle={fullTitle} intro={intro} ticketLink={ticketsLink} />
         {data.map((show) => (
-          <CreditsBlock show={show} biosExist={biosExist} goToBio={scrollToBio} crewBlock={!show.showName} />
+          <CreditsBlock show={show} biosExist={biosExist} crewBlock={!show.showName} />
         ))}
         {/*<BTFProgramInfo />*/}
       </div>

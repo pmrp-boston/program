@@ -13,7 +13,8 @@ export default function App() {
     imgSrc: string,
     imgAlt: string,
     introduction: string,
-    bios: Bio[]
+    bios: Bio[],
+    ticketsLink?: string
   }>({ shows: [], fullTitle: '', imgSrc: '', imgAlt: '', introduction: '', bios: [] });
   const [showTheme, setShowTheme] = useState<string>('');
   const [activeComponent, setActiveComponent] = useState<string>('program');
@@ -47,6 +48,15 @@ export default function App() {
     setActiveComponent(component);
   };
 
+  const setDarkTheme = () => {
+    if (showTheme.endsWith('-dark')) {
+      setShowTheme(showTheme.replace('-dark', ''));
+      return;
+    } else {
+      setShowTheme(`${showTheme}-dark`);
+    }
+  }
+
   const renderComponent = () => {
     if (activeComponent === 'program') {
       return (
@@ -57,8 +67,8 @@ export default function App() {
             imgSrc={data.imgSrc}
             fullTitle={data.fullTitle}
             intro={data.introduction}
-            showTheme={showTheme}
-            bios={data.bios} />
+            bios={data.bios}
+            ticketsLink={data.ticketsLink} />
         </div>
       );
     } else if (activeComponent === 'directions') {
@@ -83,25 +93,22 @@ export default function App() {
             imgSrc={data.imgSrc}
             fullTitle={data.fullTitle}
             intro={data.introduction}
-            showTheme={showTheme}
-            bios={data.bios} />
+            bios={data.bios}
+            ticketsLink={data.ticketsLink}
+          />
         </div>
       );
     }
   };
 
+  const darkTheme = showTheme.endsWith('-dark') ? true : false;
+
   return (
     <div className={showTheme}>
-      <Menu setActive={setActiveComponentHandler} />
-      {renderComponent()}
-      <a href="#top" className="backToTop--link">
-        <div className="backToTop">
-          <span>Back to Top</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" fill="currentColor" className="bi bi-arrow-up" viewBox="0 0 16 16">
-            <path fillRule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5" />
-          </svg>
-        </div>
-      </a>
+      <Menu setActive={setActiveComponentHandler} darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
+      <div id="content">
+        {renderComponent()}
+      </div>
     </div>
   );
 }

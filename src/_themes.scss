@@ -4,7 +4,7 @@
 //     'text-secondary': #,
 //     'text-header': #,
 //     'background-dark': #,
-//     'background-neutral': #,
+//     'body-background': #,
 //     'text-highlight': #,
 //     'highlight': #,
 // );
@@ -15,7 +15,7 @@ $bullets-theme: (
   "text-secondary": #4d5031,
   "text-header": #4d5031,
   "background-dark": #343446,
-  "background-neutral": #d9d9d9,
+  "body-background": #d9d9d9,
   "text-highlight": #4d5031,
   "highlight": #f5320b,
 );
@@ -26,7 +26,18 @@ $menagerie-theme: (
   "text-secondary": #2f311e,
   "text-header": #110f47,
   "background-dark": #110f47,
-  "background-neutral": #fdfdfd,
+  "body-background": #fdfdfd,
+  "text-highlight": #4d5031,
+  "highlight": #f5320b,
+  "menu-links": #f0e207,
+);
+
+$menagerie-dark-theme: (
+  "text-primary": #fff,
+  "text-secondary": #2f311e,
+  "text-header": #110f47,
+  "background-dark": #110f47,
+  "body-background": #314858,
   "text-highlight": #4d5031,
   "highlight": #f5320b,
   "menu-links": #110f47,
@@ -38,7 +49,7 @@ $dangerous-theme: (
   "text-secondary": #7d2115,
   "text-header": #f2f2f2,
   "background-dark": #7d2115,
-  "background-neutral": #fce7d0,
+  "body-background": #fce7d0,
   "text-highlight": #f2e205,
   "highlight": #7d2115,
 );
@@ -49,7 +60,7 @@ $thirteen-theme: (
   "text-secondary": #396297,
   "text-header": #dac42d,
   "background-dark": #31252d,
-  "background-neutral": #d9d9d9,
+  "body-background": #d9d9d9,
   "text-highlight": #c93929,
   "highlight": #c93929,
 );
