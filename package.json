@@ -11,8 +11,8 @@
     "deploy": "gh-pages -d dist -b program"
   },
   "dependencies": {
+    "@fontsource/atkinson-hyperlegible": "^5.2.6",
     "bootstrap-icons": "^1.11.3",
-    "fontawesome-free": "^1.0.4",
     "papaparse": "^5.5.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

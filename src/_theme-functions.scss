@@ -15,6 +15,14 @@
   .topMenu {
     background-color: theme("body-background");
 
+    &.expanded {
+      background-color: theme("menu-background");
+    }
+
+    .menuBar {
+      color: theme("text-primary");
+    }
+
     a {
       color: theme("menu-links");
     }
@@ -48,7 +56,19 @@
   .content {
     background-color: theme("body-background");
     color: theme("text-primary");
-    font-family: "Raleway", sans-serif;
+
+    h1,
+    h2,
+    h3 {
+      color: theme("text-header");
+    }
+
+    .buttonsAndLinks {
+      a {
+        color: theme("menu-links");
+        font-weight: 400;
+      }
+    }
   }
 
   .highlightText {

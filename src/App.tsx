@@ -37,9 +37,12 @@ export default function App() {
       const validShowParam = showParam as ProdKeys;
       console.log('show param exists, reading data for', validShowParam)
       readData(validShowParam);
-      setShowTheme(validShowParam)
+      if (showTheme == '') {
+        setShowTheme(validShowParam);
+      }
     } else {
       console.log('no show param exists')
+      setActiveComponent('information');
     }
     document.title = `Current Page: ${activeComponent}`;
   }, [activeComponent, readData, showInfo]);

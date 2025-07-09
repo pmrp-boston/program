@@ -21,7 +21,7 @@ const Menu: React.FC<MenuProps> = ({ setActive, setDarkTheme, darkTheme }) => {
         <div className="topBar">
           {!darkTheme ?
             <div id="logo">
-              <a href="/" aria-label="Program Homepage">
+              <a href="#" aria-label="Program Homepage">
                 <picture>
                   <source srcSet="./smallLogo.png" media="(max-width: 768px)" />
                   <source srcSet="./logo.png" media="(min-width: 769px)" />
@@ -30,7 +30,7 @@ const Menu: React.FC<MenuProps> = ({ setActive, setDarkTheme, darkTheme }) => {
               </a>
             </div> :
             <div id="logo">
-              <a href="/" aria-label="Program Homepage">
+              <a href="#" aria-label="Program Homepage">
                 <picture>
                   <source srcSet="./smallDarkLogo.png" media="(max-width: 768px)" />
                   <source srcSet="./darkLogo.png" media="(min-width: 769px)" />
@@ -39,14 +39,10 @@ const Menu: React.FC<MenuProps> = ({ setActive, setDarkTheme, darkTheme }) => {
               </a>
             </div>
           }
-          <div className="skipToContent">
-            <a href="#content" className="skipToContent--link" tabIndex={0}>
-              <span>Skip to Content</span>
-            </a>
-            <button onClick={setDarkTheme}>
-              Toggle Dark Theme
-            </button>
-          </div>
+          <a href="#content" className="skipToContent" tabIndex={0}>
+            <span>Skip to Content</span>
+          </a>
+
           <div aria-role="button" className="menuBar" onClick={() => setExpanded(!expanded)}>
             ☰
           </div>
@@ -68,20 +64,27 @@ const Menu: React.FC<MenuProps> = ({ setActive, setDarkTheme, darkTheme }) => {
             <li>
               <a href="https://www.pmrp.org" target="_blank" rel="noopener noreferrer">
                 PMRP Main Website
-                <i className="fas fa-external-link-alt"></i>
+                <span className="material-symbols-outlined">
+                  open_in_new
+                </span>
               </a>
+
             </li>
             <li>
               <a href="https://www.zazzle.com/store/postmeridianradio" target="_blank" rel="noopener noreferrer">
                 Store
-                <i className="fas fa-external-link-alt"></i>
+                <span className="material-symbols-outlined">
+                  open_in_new
+                </span>
               </a>
             </li>
             <li>
-              <a href="https://pmrppodcast.buzzsprout.com/" target="_blank" rel="noopener noreferrer">
-                Podcast
-                <i className="fas fa-external-link-alt"></i>
-              </a>
+              <button className={`toggleDarkTheme toggleDarkTheme--${darkTheme ? 'light' : 'dark'}`} onClick={setDarkTheme}>
+                Toggle Dark Mode
+                <span className="material-symbols-outlined">
+                  {darkTheme ? 'clear_day' : 'dark_mode'}
+                </span>
+              </button>
             </li>
           </ul>
         </div>

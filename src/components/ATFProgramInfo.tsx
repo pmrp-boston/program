@@ -9,7 +9,7 @@ interface ATFProgramInfoProps {
 const ATFProgramInfo: React.FC<ATFProgramInfoProps> = ({ intro, fullTitle, ticketLink }) => {
     return (
         <div className="ATFshowInfo">
-            <h2 className="fullTitle">{fullTitle}</h2>
+            <h1 className="fullTitle">{fullTitle}</h1>
             <p>{intro}</p>
             <div className="buttonsAndLinks">
                 {ticketLink && (

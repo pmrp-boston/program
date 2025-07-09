@@ -20,10 +20,10 @@ const Program = ({ data, imgAlt, imgSrc, fullTitle, intro, bios, ticketsLink = '
   return (
     <div>
       <div className="credits">
-        <header>
+        <div className="programHeader">
           <h4 className="preHeader">The Post Meridian Radio Players Present</h4>
           <ResponsiveHeroImage imgAlt={imgAlt} imgSrc={imgSrc} />
-        </header>
+        </div>
         <ATFProgramInfo fullTitle={fullTitle} intro={intro} ticketLink={ticketsLink} />
         {data.map((show) => (
           <CreditsBlock show={show} biosExist={biosExist} crewBlock={!show.showName} />

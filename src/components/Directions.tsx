@@ -3,7 +3,7 @@ import React from 'react';
 const Directions = () => {
   return (
     <div>
-      <h2>Directions</h2>
+      <h1>Directions</h1>
       <p>Coming Soon!</p>
     </div>
   );
