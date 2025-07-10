@@ -44,7 +44,7 @@ export default function App() {
       console.log('no show param exists')
       setActiveComponent('information');
     }
-    document.title = `Current Page: ${activeComponent}`;
+    // document.title = `Current Page: ${activeComponent}`;
   }, [activeComponent, readData, showInfo]);
 
   const setActiveComponentHandler = (component: string) => {

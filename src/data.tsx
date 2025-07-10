@@ -95,7 +95,7 @@ export const showInfo: { [key in ProdKeys]: { biosExist: boolean, biosReady?: bo
 //   return grouped;
 // };
 
-interface ProductionCredits {
+export interface ProductionCredits {
   writer: Person | undefined;
   director: Person[];
   adapter: Person | undefined;
