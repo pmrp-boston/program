@@ -1,5 +1,6 @@
 {
-  "shows": [{
+  "shows": [
+    {
     "showName": "The Menagerie",
     "directorCredits": [{ "name": "Elizabeth Salazar", "phrase": "Directed and adapted by Elizabeth Salazar from the original Gene Roddenberry teleplay" }],
     "description": "In \"The Menagerie,\" after hearing of an accident involving her former Captain, Christina Pike, Ms. Spock commandeers the Enterprise to return to the site of a past mission for mysterious reasons.",
@@ -98,11 +99,64 @@
         ]
       }
     ]
-  }],
+  },
+  {
+    "credits": [
+      {
+        "name": "Amy Lehrmitt",
+        "roles": [
+          "House Manager"
+        ]
+      },
+      {
+        "name": "Karen Sarao",
+        "roles": [
+          "Producer"
+        ]
+      },
+      {
+        "name": "Caitlin Mason",
+        "roles": [
+          "Producer"
+        ]
+      },
+      {
+        "name": "Kitty Drexel",
+        "roles": [
+          "Stage Manager"
+        ]
+      },
+      {
+        "name": "Brad Smith",
+        "roles": [
+          "Sound Design"
+        ]
+      },
+      {
+        "name": "Elizabeth Salazar",
+        "roles": [
+          "Promotional Art"
+        ]
+      },
+      {
+        "name": "Elizabeth Ross",
+        "roles": [
+          "Disability Consultant"
+        ]
+      },
+      {
+        "name": "Kitty Drexel",
+        "roles": [
+          "Disability Consultant"
+        ]
+      }
+    ]
+  }
+],
   "imgSrc": "/menageriebanner.jpg",
-  "imgAlt": "A blocky stylized drawing of a woman in a Starfleet command uniform sitting in a futuristic wheelchair.",
+  "imgAlt": "A blocky stylized drawing of a woman in a Starfleet command uniform with the words \"The Post Meridian Radio Players Present Gender Swapped Star Trek: The Menagerie\" with a banner reading \"One Night Only\"",
   "fullTitle": "Gender-Swapped Star Trek: The Menagerie",
-  "introduction": "On July 18th, for one night only the PMRP will reprise our Arisia 2025 Gender Swapped Star Trek performance of, \"The Menagerie\". Admission is free, with donations gratefully accepted. While not required, we encourage you to reserve your seat(s) in advance.",
+  "introduction": "On July 18th, for one night only the Post Meridian Radio Players will reprise our Arisia 2025 Gender Swapped Star Trek performance of, \"The Menagerie\". Admission is free, with donations gratefully accepted. While not required, we encourage you to reserve your seat(s) in advance.",
   "ticketsLink": "https://docs.google.com/forms/d/e/1FAIpQLScsgoUaaDJ_1hD2_wGMBok1tLAS4XjBrf7d8QtzIF9oYcJHog/viewform",
   "bios": [],
   "dates": [

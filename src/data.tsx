@@ -36,13 +36,13 @@ export interface Bio {
 
 
 export interface Show {
-  showName: string;
+  showName?: string;
   writerCredit?: { name: string, phrase?: string };
   adapterCredit?: { name: string, phrase?: string };
-  directorCredits: { name: string, phrase?: string }[];
+  directorCredits?: { name: string, phrase?: string }[];
   description?: string;
   credits: Person[];
-  foleyCredits: Person[];
+  foleyCredits?: Person[];
 }
 
 export interface Production {

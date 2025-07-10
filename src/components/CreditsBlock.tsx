@@ -18,10 +18,10 @@ const CreditsBlock = ({ show, biosExist, crewBlock }: { show: Show, biosExist: b
 
         <div className="programBlock-header--highlightCredits">
 
-          {directorCredits.length > 0 && (
+          {directorCredits && directorCredits.length > 0 && (
             <HighlightCredit name={directorCredits[0].name} defaultPhrase={`Directed by ${directorCredits[0].name}`} biosReady={biosExist} goToBio={goToBio} phrase={directorCredits[0].phrase} />
           )}
-          {directorCredits.length > 1 && (
+          {directorCredits && directorCredits.length > 1 && (
             <HighlightCredit name={directorCredits[1].name} defaultPhrase={`Assistant Directed by ${directorCredits[1].name}`} biosReady={biosExist} goToBio={goToBio} phrase={directorCredits[1].phrase} />
           )}
           {writerCredit && (
@@ -37,7 +37,7 @@ const CreditsBlock = ({ show, biosExist, crewBlock }: { show: Show, biosExist: b
       {credits.map((credit) => (
         <SingleCredit credit={credit} goToBio={goToBio} biosReady={biosExist} />
       ))}
-      {foleyCredits.length > 0 && (
+      {foleyCredits && foleyCredits.length > 0 && (
         <div>
           {!crewBlock && <div className="foleyDivider"></div>}
           {foleyCredits.map((credit) => (
