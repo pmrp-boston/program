@@ -4,12 +4,28 @@ interface ATFProgramInfoProps {
     intro: string;
     fullTitle: string;
     ticketLink?: string;
+    dates?: string[];
+    locations?: string[];
 }
 
-const ATFProgramInfo: React.FC<ATFProgramInfoProps> = ({ intro, fullTitle, ticketLink }) => {
+const ATFProgramInfo: React.FC<ATFProgramInfoProps> = ({ intro, fullTitle, ticketLink, dates = [], locations = [] }) => {
     return (
         <div className="ATFshowInfo">
             <h1 className="fullTitle">{fullTitle}</h1>
+            <div className="dates">
+                {dates.map((date, index) => (
+                    <span key={index} className="date">
+                        {date}
+                    </span>
+                ))}
+            </div>
+            <div className="locations">
+                {locations.map((location, index) => (
+                    <a href="https://maps.app.goo.gl/QoExhbjdaC8NAGSH9" key={index} className="location">
+                        {location}
+                    </a>
+                ))}
+            </div>
             <p>{intro}</p>
             <div className="buttonsAndLinks">
                 {ticketLink && (

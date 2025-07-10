@@ -1,21 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import './App.scss';
 import Program from './components/Program';
-import { ProdKeys, PROD_KEYS, showInfo, Show, Bio } from './data';
+import { ProdKeys, PROD_KEYS, showInfo, Production } from './data';
 import Menu from './components/Menu';
 import Directions from './components/Directions';
 import Information from './components/Information';
 
 export default function App() {
-  const [data, setData] = useState<{
-    shows: Show[],
-    fullTitle: string,
-    imgSrc: string,
-    imgAlt: string,
-    introduction: string,
-    bios: Bio[],
-    ticketsLink?: string
-  }>({ shows: [], fullTitle: '', imgSrc: '', imgAlt: '', introduction: '', bios: [] });
+  const [data, setData] = useState<Production>({ shows: [], fullTitle: '', imgSrc: '', imgAlt: '', introduction: '', bios: [], ticketsLink: '', dates: [] });
   const [showTheme, setShowTheme] = useState<string>('');
   const [activeComponent, setActiveComponent] = useState<string>('program');
 
@@ -65,13 +57,15 @@ export default function App() {
       return (
         <div aria-live="polite" className="content">
           <Program
-            data={data.shows}
+            shows={data.shows}
             imgAlt={data.imgAlt}
             imgSrc={data.imgSrc}
             fullTitle={data.fullTitle}
-            intro={data.introduction}
+            introduction={data.introduction}
             bios={data.bios}
-            ticketsLink={data.ticketsLink} />
+            ticketsLink={data.ticketsLink}
+            dates={data.dates}
+            locations={data.locations} />
         </div>
       );
     } else if (activeComponent === 'directions') {
@@ -91,13 +85,15 @@ export default function App() {
       return (
         <div aria-live="polite" className="content">
           <Program
-            data={data.shows}
+            shows={data.shows}
             imgAlt={data.imgAlt}
             imgSrc={data.imgSrc}
             fullTitle={data.fullTitle}
-            intro={data.introduction}
+            introduction={data.introduction}
             bios={data.bios}
             ticketsLink={data.ticketsLink}
+            dates={data.dates}
+            locations={data.locations}
           />
         </div>
       );

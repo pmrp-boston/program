@@ -2,19 +2,11 @@ import CreditsBlock from "../components/CreditsBlock.js";
 import Bios from "../components/Bios.js";
 import ResponsiveHeroImage from "../components/ResponsiveHeroImage.js";
 import ATFProgramInfo from "../components/ATFProgramInfo.js";
-import { Show, Bio } from "../data.js";
+import { Production } from "../data.js";
 import "../App.scss";
 
-const Program = ({ data, imgAlt, imgSrc, fullTitle, intro, bios, ticketsLink = '' }:
-  {
-    data: Show[],
-    imgAlt: string,
-    imgSrc: string,
-    fullTitle: string,
-    intro: string,
-    bios: Bio[],
-    ticketsLink?: string
-  }) => {
+const Program = ({ shows, imgAlt, imgSrc, fullTitle, introduction, bios, ticketsLink = '', dates = [], locations = [] }:
+  Production) => {
   const biosExist = bios.length > 0;
 
   return (
@@ -24,8 +16,8 @@ const Program = ({ data, imgAlt, imgSrc, fullTitle, intro, bios, ticketsLink = '
           <h4 className="preHeader">The Post Meridian Radio Players Present</h4>
           <ResponsiveHeroImage imgAlt={imgAlt} imgSrc={imgSrc} />
         </div>
-        <ATFProgramInfo fullTitle={fullTitle} intro={intro} ticketLink={ticketsLink} />
-        {data.map((show) => (
+        <ATFProgramInfo fullTitle={fullTitle} intro={introduction} ticketLink={ticketsLink} dates={dates} locations={locations} />
+        {shows.map((show) => (
           <CreditsBlock show={show} biosExist={biosExist} crewBlock={!show.showName} />
         ))}
         {/*<BTFProgramInfo />*/}

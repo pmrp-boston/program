@@ -12,6 +12,10 @@
 }
 
 @mixin apply-theme() {
+  a {
+    color: theme("menu-links");
+  }
+
   .topMenu {
     background-color: theme("body-background");
 
@@ -22,10 +26,10 @@
     .menuBar {
       color: theme("text-primary");
     }
+  }
 
-    a {
-      color: theme("menu-links");
-    }
+  .backToTop {
+    background-color: theme("menu-background");
   }
 
   .wrapper {

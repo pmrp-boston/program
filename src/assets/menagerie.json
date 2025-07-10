@@ -2,7 +2,7 @@
   "shows": [{
     "showName": "The Menagerie",
     "directorCredits": [{ "name": "Elizabeth Salazar", "phrase": "Directed and adapted by Elizabeth Salazar from the original Gene Roddenberry teleplay" }],
-    "description": "",
+    "description": "In \"The Menagerie,\" after hearing of an accident involving her former Captain, Christina Pike, Ms. Spock commandeers the Enterprise to return to the site of a past mission for mysterious reasons.",
     "credits": [
     {
       "name": "Karen Sarao",
@@ -104,5 +104,11 @@
   "fullTitle": "Gender-Swapped Star Trek: The Menagerie",
   "introduction": "On July 18th, for one night only the PMRP will reprise our Arisia 2025 Gender Swapped Star Trek performance of, \"The Menagerie\". Admission is free, with donations gratefully accepted. While not required, we encourage you to reserve your seat(s) in advance.",
   "ticketsLink": "https://docs.google.com/forms/d/e/1FAIpQLScsgoUaaDJ_1hD2_wGMBok1tLAS4XjBrf7d8QtzIF9oYcJHog/viewform",
-  "bios": []
+  "bios": [],
+  "dates": [
+    "July 18, 2025 at 8:00 PM"
+  ],
+  "locations": [
+    "George Dilboy VFW Post 529\n351 Summer Street\nSomerville, MA 02144"
+  ]
 }

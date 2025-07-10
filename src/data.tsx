@@ -45,6 +45,18 @@ export interface Show {
   foleyCredits: Person[];
 }
 
+export interface Production {
+  shows: Show[],
+  fullTitle: string,
+  imgSrc: string,
+  imgAlt: string,
+  introduction: string,
+  bios: Bio[],
+  ticketsLink?: string,
+  dates?: string[],
+  locations?: string[]
+}
+
 // This includes ONLY the names of the shows that should be displayed for this production
 // and associates them with their string keys
 // export const showNames = {
@@ -78,48 +90,9 @@ export const showInfo: { [key in ProdKeys]: { biosExist: boolean, biosReady?: bo
   }
 }
 
-// Function to group people by show
-// export const groupPeopleByShow = (people: Person[]) => {
-//   const grouped: { [key in ShowKeys]: Person[] } = {} as { [key in ShowKeys]: Person[] };
-//   people.forEach(person => {
-//     person.shows.forEach(show => {
-//       if (!grouped[show]) {
-//         grouped[show] = [];
-//       }
-//       const rolesInShow = person.roles[show as ShowKeys] || [];
-//       if (!rolesInShow.some(role => /Writer/i.test(role)) && !rolesInShow.some(role => /Director/i.test(role)) && !rolesInShow.some(role => /Adapted/i.test(role)) && !rolesInShow.some(role => /Foley/i.test(role))) {
-//         grouped[show]!.push(person);
-//       }
-//     });
-//   });
-//   return grouped;
-// };
-
 export interface ProductionCredits {
   writer: Person | undefined;
   director: Person[];
   adapter: Person | undefined;
   foley: Person[];
 }
-
-// export const getShowProdCreds = (show: ShowKeys, people: Person[]) => {
-//   const creds: ProductionCredits = { writer: undefined, director: [], adapter: undefined, foley: [] };
-//   people.forEach(person => {
-//     person.shows.forEach(listShow => {
-//       const rolesInShow = person.roles[listShow as ShowKeys] || [];
-//       if (listShow === show && rolesInShow.some(role => /Writer/i.test(role))) {
-//         creds.writer = person;
-//       }
-//       if (listShow === show && rolesInShow.some(role => /Director/i.test(role))) {
-//         creds.director.push(person);
-//       }
-//       if (listShow === show && rolesInShow.some(role => /Adapted/i.test(role))) {
-//         creds.adapter = person;
-//       }
-//       if (listShow === show && rolesInShow.some(role => /Foley/i.test(role))) {
-//         creds.foley.push(person);
-//       }
-//     });
-//   });
-//   return creds;
-// };

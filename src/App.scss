@@ -51,14 +51,23 @@ li:last-child {
 /* Styling for the name */
 h2 {
   margin: 0 0 5px 0;
+  font-size: 1.6em;
+}
+
+h4 {
   font-size: 1.2em;
 }
 
-/* Styling for the bio */
-p {
+/* Styling for text */
+p,
+span {
   margin: 0;
-  font-size: 0.9em;
+  font-size: 1.05em;
   line-height: 1.4;
+}
+
+a {
+  font-size: 1.05em;
 }
 
 /* Styling for the image */
@@ -297,6 +306,24 @@ div.bullets {
       text-align: center;
     }
 
+    .dates {
+      text-align: center;
+      font-size: 1.3em;
+      margin: 0.5em 0;
+    }
+
+    .locations {
+      display: flex;
+      justify-content: center;
+
+      .location {
+        display: inline-block;
+        width: 30%;
+        text-align: justify;
+        text-align-last: center;
+      }
+    }
+
     .buttonsAndLinks {
       display: flex;
       justify-content: space-around;
@@ -327,7 +354,7 @@ div.bullets {
 
     &-header {
       h3 {
-        font-size: 1.4em;
+        font-size: 1.6em;
       }
 
       &--highlightCredits {
