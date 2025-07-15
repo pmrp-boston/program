@@ -33,14 +33,14 @@ const CreditsBlock = ({ show, biosExist, crewBlock }: { show: Show, biosExist: b
         </div>
       </div>
       {description && <p>{description}</p>}
-      {credits.map((credit) => (
-        <SingleCredit credit={credit} goToBio={goToBio} biosReady={biosExist} />
+      {credits.map((credit, index) => (
+        <SingleCredit key={index} credit={credit} goToBio={goToBio} biosReady={biosExist} />
       ))}
       {foleyCredits && foleyCredits.length > 0 && (
         <div>
           {!crewBlock && <div className="foleyDivider"></div>}
-          {foleyCredits.map((credit) => (
-            <SingleCredit credit={credit} goToBio={goToBio} biosReady={biosExist} />
+          {foleyCredits.map((credit, index) => (
+            <SingleCredit key={index} credit={credit} goToBio={goToBio} biosReady={biosExist} />
           ))}
         </div>
       )}

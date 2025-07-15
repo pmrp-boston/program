@@ -17,8 +17,8 @@ const Program = ({ shows, imgAlt, imgSrc, fullTitle, introduction, bios, tickets
           <ResponsiveHeroImage imgAlt={imgAlt} imgSrc={imgSrc} />
         </div>
         <ATFProgramInfo fullTitle={fullTitle} intro={introduction} ticketLink={ticketsLink} dates={dates} locations={locations} />
-        {shows.map((show) => (
-          <CreditsBlock show={show} biosExist={biosExist} crewBlock={!show.showName} />
+        {shows.map((show, index) => (
+          <CreditsBlock key={index} show={show} biosExist={biosExist} crewBlock={!show.showName} />
         ))}
         {/*<BTFProgramInfo />*/}
       </div>
