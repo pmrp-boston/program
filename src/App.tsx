@@ -10,7 +10,7 @@ import { Routes, Route, useSearchParams } from 'react-router-dom';
 export default function App() {
   const [data, setData] = useState<Production>({ shows: [], fullTitle: '', imgSrc: '', imgAlt: '', introduction: '', bios: [], ticketsLink: '', dates: [] });
   const [showTheme, setShowTheme] = useState<string>('');
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const readData = useCallback(async (show: ProdKeys) => {
     try {
