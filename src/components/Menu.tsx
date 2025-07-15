@@ -36,7 +36,7 @@ const Menu: React.FC<MenuProps> = ({ setDarkTheme, darkTheme }) => {
             <span>Skip to Content</span>
           </a>
 
-          <div aria-role="button" className="menuBar" onClick={() => setExpanded(!expanded)}>
+          <div role="button" className="menuBar" onClick={() => setExpanded(!expanded)}>
             ☰
           </div>
         </div>

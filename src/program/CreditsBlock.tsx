@@ -51,7 +51,7 @@ const CreditsBlock = ({ show, biosExist, crewBlock }: { show: Show, biosExist: b
 const HighlightCredit = ({ name, defaultPhrase, biosReady, goToBio, phrase = "" }: { name: string, defaultPhrase: string, biosReady: boolean, goToBio: (name: string) => void, phrase?: string }) => {
   if (biosReady) {
     return (
-      <a aria-role="button" href={`#${name}`} onClick={() => goToBio(name)} className={`highlightCredit${biosReady ? "" : "-noBios"}`}>
+      <a href={`#${name}`} onClick={() => goToBio(name)} className={`highlightCredit${biosReady ? "" : "-noBios"}`}>
         <h4 className={`highlightCredit${biosReady ? "" : "-noBios"}`}>{phrase || defaultPhrase}
           <span className="material-symbols-outlined">
             history_edu
@@ -82,7 +82,7 @@ const SingleCredit = ({ credit, goToBio, biosReady = false }: { credit: Person, 
     <div className="singleCredit">
       <span className={`singleCredit-role ${wrapFixRole ? "wrapFix" : "noFix"}`}>{roles.join(', ')}</span>
       <span className="dots"></span>
-      {biosReady && <a aria-role="button" href={`#${name}`} onClick={() => goToBio(name)} className={`singleCredit-name ${wrapFixName ? "wrapFix" : "noFix"}`}>
+      {biosReady && <a href={`#${name}`} onClick={() => goToBio(name)} className={`singleCredit-name ${wrapFixName ? "wrapFix" : "noFix"}`}>
         {name}
         <span className="material-symbols-outlined">
           history_edu

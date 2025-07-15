@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import './App.scss';
 import Program from './program/Program';
-import { ProdKeys, PROD_KEYS, showInfo, Production } from './data';
+import { ProdKeys, PROD_KEYS, Production } from './data';
 import Menu from './components/Menu';
 import Directions from './directions/Directions';
 import Information from './information/Information';
@@ -32,7 +32,7 @@ export default function App() {
         setShowTheme(validShowParam);
       }
     }
-  }, [searchParams, readData, showInfo]);
+  }, [searchParams, readData]);
 
   const setDarkTheme = () => {
     if (showTheme.endsWith('-dark')) {
