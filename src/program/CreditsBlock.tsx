@@ -10,7 +10,6 @@ const goToBio = (name: string) => {
 
 const CreditsBlock = ({ show, biosExist, crewBlock }: { show: Show, biosExist: boolean, crewBlock: boolean }) => {
   const { showName, writerCredit, adapterCredit, directorCredits, description, credits, foleyCredits } = show;
-  console.log(`BiosExist: ${biosExist}`);
   return (
     <div className="programBlock">
       <div className="programBlock-header">
@@ -72,7 +71,6 @@ const HighlightCredit = ({ name, defaultPhrase, biosReady, goToBio, phrase = "" 
 
 const SingleCredit = ({ credit, goToBio, biosReady = false }: { credit: Person, goToBio: (name: string) => void, biosReady?: boolean }) => {
   const { name, roles } = credit;
-  console.log(`SingleCredit: ${name} - ${roles}`);
   const { width } = useWindowDimensions();
   // const roleString = roles.join(', ');
   const wrapFixRole = roles.length > 10 && width < 400;

@@ -1,15 +1,16 @@
 import { useState, useEffect, useCallback } from 'react';
 import './App.scss';
-import Program from './components/Program';
+import Program from './program/Program';
 import { ProdKeys, PROD_KEYS, showInfo, Production } from './data';
 import Menu from './components/Menu';
-import Directions from './components/Directions';
-import Information from './components/Information';
+import Directions from './directions/Directions';
+import Information from './information/Information';
+import { Routes, Route, useSearchParams } from 'react-router-dom';
 
 export default function App() {
   const [data, setData] = useState<Production>({ shows: [], fullTitle: '', imgSrc: '', imgAlt: '', introduction: '', bios: [], ticketsLink: '', dates: [] });
   const [showTheme, setShowTheme] = useState<string>('');
-  const [activeComponent, setActiveComponent] = useState<string>('program');
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const readData = useCallback(async (show: ProdKeys) => {
     try {
@@ -22,26 +23,16 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const showParam = urlParams.get('show');
+    const showParam = searchParams.get('show');
 
-    if (urlParams.has('show') && showParam && Object.values(PROD_KEYS).includes(showParam)) {
+    if (searchParams.has('show') && showParam && Object.values(PROD_KEYS).includes(showParam)) {
       const validShowParam = showParam as ProdKeys;
-      console.log('show param exists, reading data for', validShowParam)
       readData(validShowParam);
       if (showTheme == '') {
         setShowTheme(validShowParam);
       }
-    } else {
-      console.log('no show param exists')
-      setActiveComponent('information');
     }
-    // document.title = `Current Page: ${activeComponent}`;
-  }, [activeComponent, readData, showInfo]);
-
-  const setActiveComponentHandler = (component: string) => {
-    setActiveComponent(component);
-  };
+  }, [searchParams, readData, showInfo]);
 
   const setDarkTheme = () => {
     if (showTheme.endsWith('-dark')) {
@@ -52,61 +43,26 @@ export default function App() {
     }
   }
 
-  const renderComponent = () => {
-    if (activeComponent === 'program') {
-      return (
-        <div aria-live="polite" className="content">
-          <Program
-            shows={data.shows}
-            imgAlt={data.imgAlt}
-            imgSrc={data.imgSrc}
-            fullTitle={data.fullTitle}
-            introduction={data.introduction}
-            bios={data.bios}
-            ticketsLink={data.ticketsLink}
-            dates={data.dates}
-            locations={data.locations} />
-        </div>
-      );
-    } else if (activeComponent === 'directions') {
-      return (
-        <div aria-live="polite" className="content">
-          <Directions />
-        </div>
-      );
-    } else if (activeComponent === 'information') {
-      return (
-        <div aria-live="polite" className="content">
-          <Information />
-        </div>
-      );
-    }
-    else {
-      return (
-        <div aria-live="polite" className="content">
-          <Program
-            shows={data.shows}
-            imgAlt={data.imgAlt}
-            imgSrc={data.imgSrc}
-            fullTitle={data.fullTitle}
-            introduction={data.introduction}
-            bios={data.bios}
-            ticketsLink={data.ticketsLink}
-            dates={data.dates}
-            locations={data.locations}
-          />
-        </div>
-      );
-    }
-  };
-
   const darkTheme = showTheme.endsWith('-dark') ? true : false;
 
   return (
     <div className={showTheme}>
-      <Menu setActive={setActiveComponentHandler} darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
+      <Menu darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
       <div id="content">
-        {renderComponent()}
+        <Routes>
+          <Route path="/" element={<Program
+            shows={data.shows}
+            imgAlt={data.imgAlt}
+            imgSrc={data.imgSrc}
+            fullTitle={data.fullTitle}
+            introduction={data.introduction}
+            bios={data.bios}
+            ticketsLink={data.ticketsLink}
+            dates={data.dates}
+            locations={data.locations} />} />
+          <Route path="/directions" element={<Directions />} />
+          <Route path="/information" element={<Information />} />
+        </Routes>
       </div>
     </div>
   );

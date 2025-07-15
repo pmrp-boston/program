@@ -1,19 +1,16 @@
 
 import React, { useState } from 'react';
 import BackToTop from './BackToTop';
+import { Link, useLocation } from 'react-router-dom';
 
 interface MenuProps {
-  setActive: (component: string) => void;
   setDarkTheme: () => void;
   darkTheme: boolean;
 }
 
-const Menu: React.FC<MenuProps> = ({ setActive, setDarkTheme, darkTheme }) => {
+const Menu: React.FC<MenuProps> = ({ setDarkTheme, darkTheme }) => {
   const [expanded, setExpanded] = useState(false);
-  const selectMenuItem = (component: string) => {
-    setActive(component);
-    setExpanded(false); // Collapse the menu after selection
-  };
+  const location = useLocation();
 
   return (
     <div>
@@ -21,22 +18,18 @@ const Menu: React.FC<MenuProps> = ({ setActive, setDarkTheme, darkTheme }) => {
         <div className="topBar">
           {!darkTheme ?
             <div id="logo">
-              <a href="#" aria-label="Program Homepage">
-                <picture>
-                  <source srcSet="./smallLogo.png" media="(max-width: 768px)" />
-                  <source srcSet="./logo.png" media="(min-width: 769px)" />
-                  <img src="./logo.png" alt="Post Meridian Radio Players Logo" />
-                </picture>
-              </a>
+              <picture>
+                <source srcSet="./smallLogo.png" media="(max-width: 768px)" />
+                <source srcSet="./logo.png" media="(min-width: 769px)" />
+                <img src="./logo.png" alt="Post Meridian Radio Players Logo" />
+              </picture>
             </div> :
             <div id="logo">
-              <a href="#" aria-label="Program Homepage">
-                <picture>
-                  <source srcSet="./smallDarkLogo.png" media="(max-width: 768px)" />
-                  <source srcSet="./darkLogo.png" media="(min-width: 769px)" />
-                  <img src="./darkLogo.png" alt="Post Meridian Radio Players Logo" />
-                </picture>
-              </a>
+              <picture>
+                <source srcSet="./smallDarkLogo.png" media="(max-width: 768px)" />
+                <source srcSet="./darkLogo.png" media="(min-width: 769px)" />
+                <img src="./darkLogo.png" alt="Post Meridian Radio Players Logo" />
+              </picture>
             </div>
           }
           <a href="#content" className="skipToContent" tabIndex={0}>
@@ -51,13 +44,13 @@ const Menu: React.FC<MenuProps> = ({ setActive, setDarkTheme, darkTheme }) => {
         <div className={`menuItems ${expanded ? 'expanded' : ''}`}>
           <ul className={`mainMenu`}>
             <li>
-              <a onClick={() => selectMenuItem('program')} tabIndex={0}>Cast and Crew</a>
+              <Link to={`/${location.search}`} onClick={() => setExpanded(false)} tabIndex={0}>Cast and Crew</Link>
             </li>
             <li>
-              <a onClick={() => selectMenuItem('directions')} tabIndex={0}>Directions (Coming Soon!)</a>
+              <Link to={`/directions${location.search}`} onClick={() => setExpanded(false)} tabIndex={0}>Directions (Coming Soon!)</Link>
             </li>
             <li>
-              <a onClick={() => selectMenuItem('information')} tabIndex={0}>Information and Accessibility (Coming Soon!)</a>
+              <Link to={`/information${location.search}`} onClick={() => setExpanded(false)} tabIndex={0}>Information and Accessibility (Coming Soon!)</Link>
             </li>
           </ul>
           <ul className={`secondaryMenu`}>

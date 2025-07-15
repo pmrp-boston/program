@@ -1,3 +1,7 @@
+/**
+ * Theme-specific styles
+ */
+
 @use "_themes" as themes;
 
 @function theme($key) {
@@ -7,7 +11,7 @@
 
   @else {
     @warn "Key '#{$key}' not found in current theme.";
-    @return null; // Or a default value if you prefer
+    @return null;
   }
 }
 
@@ -33,31 +37,17 @@
   }
 
   .wrapper {
-    font-family: "Raleway", sans-serif;
     margin: auto;
-    // max-width: theme("wideBannerWidth");
     background-color: theme("background-dark");
-
-    h3 {
-      font-size: 3em;
-      font-family: "Teko", sans-serif;
-      margin: 0;
-      text-align: center;
-    }
 
     h4 {
       &.postHeader {
         color: theme("text-header");
       }
-
-      font-size: 1.2em;
-      font-family: "Teko",
-      sans-serif;
-      margin: 0;
     }
   }
 
-  .content {
+  #content {
     background-color: theme("body-background");
     color: theme("text-primary");
 
@@ -70,7 +60,6 @@
     .buttonsAndLinks {
       a {
         color: theme("menu-links");
-        font-weight: 400;
       }
     }
   }
@@ -96,17 +85,5 @@
       border: 1px solid theme("text-secondary");
     }
 
-  }
-
-  .auditionFooter {
-    background-color: theme("body-background");
-    padding: 16px;
-    text-align: center;
-    font-size: larger;
-
-    a {
-      margin: 8px;
-      display: block;
-    }
   }
 }

@@ -267,7 +267,7 @@ div.bullets {
   }
 }
 
-.content {
+#content {
   padding: 0 .5em 3em .5em;
 
   h1 {
@@ -335,6 +335,7 @@ div.bullets {
         border-radius: 5px;
         text-decoration: none;
         margin: 24px 0 12px 0;
+        font-weight: 400;
       }
     }
   }

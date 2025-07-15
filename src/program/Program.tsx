@@ -1,7 +1,7 @@
-import CreditsBlock from "../components/CreditsBlock.js";
-import Bios from "../components/Bios.js";
-import ResponsiveHeroImage from "../components/ResponsiveHeroImage.js";
-import ATFProgramInfo from "../components/ATFProgramInfo.js";
+import CreditsBlock from "./CreditsBlock.js";
+import Bios from "./Bios.js";
+import ResponsiveHeroImage from "./ResponsiveHeroImage.js";
+import ATFProgramInfo from "./ATFProgramInfo.js";
 import { Production } from "../data.js";
 import "../App.scss";
 
@@ -27,8 +27,6 @@ const Program = ({ shows, imgAlt, imgSrc, fullTitle, introduction, bios, tickets
           <Bios bios={bios} />
         </div>
       )}
-
-      <footer>{/* <AuditionFooter /> */}</footer>
     </div>
   );
 };
