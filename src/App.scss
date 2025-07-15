@@ -126,6 +126,7 @@ div.bullets {
 
 .topMenu {
   display: flex;
+  flex-direction: column;
   font-size: 14px;
   align-items: center;
   justify-content: space-around;
@@ -161,11 +162,12 @@ div.bullets {
   }
 
   img {
-    width: 80%;
-    margin: auto;
+    width: 60%;
+    margin: 2% 10%;
 
     @media (max-width: 768px) {
       width: 60%;
+      margin: unset;
     }
   }
 
@@ -174,17 +176,43 @@ div.bullets {
     cursor: pointer;
   }
 
-  .topBar {
-    width: 20%;
-    text-align: center;
-
+  .mobileMenu {
+    display: none;
 
     @media (max-width: 768px) {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: space-between;
       align-items: center;
       width: 100%;
+    }
+  }
+
+  .desktopMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    li {
+      padding: .5em 1em;
+    }
+
+    .mainMenu {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+
+    .secondaryMenu {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+
+    @media (max-width: 768px) {
+      display: none;
     }
   }
 
@@ -202,10 +230,13 @@ div.bullets {
     display: none;
 
     @media (max-width: 768px) {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       cursor: pointer;
-      margin: .5em;
+      // margin: .5em;
       font-size: 2em;
+      width: 100%
     }
   }
 
@@ -245,25 +276,7 @@ div.bullets {
       }
     }
 
-    @media (min-width: 769px) {
-      width: 75%;
 
-      li {
-        padding: .5em 1em;
-      }
-
-      .mainMenu {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-      }
-
-      .secondaryMenu {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-      }
-    }
   }
 }
 
@@ -275,7 +288,7 @@ div.bullets {
   }
 
   @media (max-width: 769px) {
-    padding-top: 7em;
+    padding-top: 8em;
   }
 
   .programHeader {

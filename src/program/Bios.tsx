@@ -17,9 +17,9 @@ const Bios = ({ bios }: { bios: Bio[] }) => {
     <div className="biosBlock">
       <h3 className="biosBlock-title">Cast & Crew Bios</h3>
       <div className="biosBlock-wrapper">
-        {bios.map((bio) => {
+        {bios.map((bio, index) => {
           if (!bio.bio) return null; // Skip if no name
-          return <SingleBio name={bio.name} bioText={bio.bio} />;
+          return <SingleBio key={index} name={bio.name} bioText={bio.bio} />;
         })}
       </div>
     </div>

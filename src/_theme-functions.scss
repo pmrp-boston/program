@@ -20,12 +20,9 @@
     color: theme("menu-links");
   }
 
-  .topMenu {
-    background-color: theme("body-background");
-
-    &.expanded {
-      background-color: theme("menu-background");
-    }
+  nav,
+  .pageHeader {
+    background-color: theme("menu-background");
 
     .menuBar {
       color: theme("text-primary");
