@@ -21,18 +21,18 @@ const Menu: React.FC<MenuProps> = ({ setDarkTheme, darkTheme }) => {
               <picture>
                 <source srcSet="./smallLogo.png" media="(max-width: 768px)" />
                 <source srcSet="./logo.png" media="(min-width: 769px)" />
-                <img src="./logo.png" alt="Post Meridian Radio Players Logo" />
+                <img src="./logo.png" alt="The Post Meridian Radio Players" />
               </picture>
             </div> :
             <div id="logo">
               <picture>
                 <source srcSet="./smallDarkLogo.png" media="(max-width: 768px)" />
                 <source srcSet="./darkLogo.png" media="(min-width: 769px)" />
-                <img src="./darkLogo.png" alt="Post Meridian Radio Players Logo" />
+                <img src="./darkLogo.png" alt="The Post Meridian Radio Players" />
               </picture>
             </div>
           }
-          <a href="#content" className="skipToContent" tabIndex={0}>
+          <a href="#content" className="skipToContent">
             <span>Skip to Content</span>
           </a>
 
@@ -44,13 +44,13 @@ const Menu: React.FC<MenuProps> = ({ setDarkTheme, darkTheme }) => {
         <div className={`menuItems ${expanded ? 'expanded' : ''}`}>
           <ul className={`mainMenu`}>
             <li>
-              <Link to={`/${location.search}`} onClick={() => setExpanded(false)} tabIndex={0}>Cast and Crew</Link>
+              <Link to={`/${location.search}`} onClick={() => setExpanded(false)}>Cast and Crew</Link>
             </li>
             <li>
-              <Link to={`/directions${location.search}`} onClick={() => setExpanded(false)} tabIndex={0}>Directions (Coming Soon!)</Link>
+              <Link to={`/directions${location.search}`} onClick={() => setExpanded(false)}>Directions (Coming Soon!)</Link>
             </li>
             <li>
-              <Link to={`/information${location.search}`} onClick={() => setExpanded(false)} tabIndex={0}>Information and Accessibility (Coming Soon!)</Link>
+              <Link to={`/information${location.search}`} onClick={() => setExpanded(false)}>Information and Accessibility (Coming Soon!)</Link>
             </li>
           </ul>
           <ul className={`secondaryMenu`}>
