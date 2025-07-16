@@ -53,9 +53,7 @@ const HighlightCredit = ({ name, defaultPhrase, biosReady, goToBio, phrase = "" 
     return (
       <a href={`#${name}`} onClick={() => goToBio(name)} className={`highlightCredit${biosReady ? "" : "-noBios"}`}>
         <h4 className={`highlightCredit${biosReady ? "" : "-noBios"}`}>{phrase || defaultPhrase}
-          <span className="material-symbols-outlined">
-            history_edu
-          </span>
+
         </h4>
       </a>
     );
@@ -84,9 +82,6 @@ const SingleCredit = ({ credit, goToBio, biosReady = false }: { credit: Person, 
       <span className="dots"></span>
       {biosReady && <a href={`#${name}`} onClick={() => goToBio(name)} className={`singleCredit-name ${wrapFixName ? "wrapFix" : "noFix"}`}>
         {name}
-        <span className="material-symbols-outlined">
-          history_edu
-        </span>
       </a>}
       {!biosReady && <span className={`singleCredit-name ${wrapFixName ? "wrapFix" : "noFix"}`}>{name}</span>}
     </div>

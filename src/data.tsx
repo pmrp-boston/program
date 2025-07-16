@@ -54,7 +54,7 @@ export interface Production {
   bios: Bio[],
   ticketsLink?: string,
   dates?: string[],
-  locations?: string[]
+  locations: string[]
 }
 
 // This includes ONLY the names of the shows that should be displayed for this production

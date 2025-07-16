@@ -10,6 +10,10 @@ interface MenuProps {
 
 const Menu: React.FC<MenuProps> = ({ setDarkTheme, darkTheme }) => {
   const location = useLocation();
+  const menu = document.querySelector('details');
+  function closeMenu() {
+    menu?.removeAttribute("open")
+  }
 
   return (
     <div className="pageHeader">
@@ -21,18 +25,10 @@ const Menu: React.FC<MenuProps> = ({ setDarkTheme, darkTheme }) => {
           <summary className="menuBar">
             {!darkTheme ?
               <div id="logo">
-                <picture>
-                  <source srcSet="./smallLogo.png" media="(max-width: 768px)" />
-                  <source srcSet="./logo.png" media="(min-width: 769px)" />
-                  <img src="./logo.png" alt="The Post Meridian Radio Players" />
-                </picture>
+                <img src="./smallLogo.png" alt="The Post Meridian Radio Players" />
               </div> :
               <div id="logo">
-                <picture>
-                  <source srcSet="./smallDarkLogo.png" media="(max-width: 768px)" />
-                  <source srcSet="./darkLogo.png" media="(min-width: 769px)" />
-                  <img src="./darkLogo.png" alt="The Post Meridian Radio Players" />
-                </picture>
+                <img src="./smallDarkLogo.png" alt="The Post Meridian Radio Players" />
               </div>
             }
             <span className="material-symbols-outlined">
@@ -41,13 +37,13 @@ const Menu: React.FC<MenuProps> = ({ setDarkTheme, darkTheme }) => {
           </summary>
           <ul className={`mainMenu`}>
             <li>
-              <Link to={`/${location.search}`}>Cast and Crew</Link>
+              <Link to={`/${location.search}`} onClick={() => closeMenu()}>Cast and Crew</Link>
             </li>
             <li>
-              <Link to={`/directions${location.search}`}>Directions (Coming Soon!)</Link>
+              <Link to={`/directions${location.search}`} onClick={() => closeMenu()}>Directions</Link>
             </li>
             <li>
-              <Link to={`/information${location.search}`}>Information and Accessibility (Coming Soon!)</Link>
+              <Link to={`/information${location.search}`} onClick={() => closeMenu()}>Information and Accessibility (Coming Soon!)</Link>
             </li>
           </ul>
           <ul className={`secondaryMenu`}>
@@ -93,7 +89,7 @@ const Menu: React.FC<MenuProps> = ({ setDarkTheme, darkTheme }) => {
                 <Link to={`/${location.search}`}>Cast and Crew</Link>
               </li>
               <li>
-                <Link to={`/directions${location.search}`}>Directions (Coming Soon!)</Link>
+                <Link to={`/directions${location.search}`}>Directions</Link>
               </li>
               <li>
                 <Link to={`/information${location.search}`}>Information and Accessibility (Coming Soon!)</Link>

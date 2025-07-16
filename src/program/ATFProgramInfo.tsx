@@ -8,7 +8,14 @@ interface ATFProgramInfoProps {
     locations?: string[];
 }
 
+
 const ATFProgramInfo: React.FC<ATFProgramInfoProps> = ({ intro, fullTitle, ticketLink, dates = [], locations = [] }) => {
+    const addresses: string[] = [];
+    locations.map((location) => {
+        if (location === 'VFW') {
+            addresses.push("George Dilboy VFW Post 529\n351 Summer Street\nSomerville, MA 02144");
+        }
+    })
     return (
         <div className="ATFshowInfo">
             <h1 className="fullTitle">{fullTitle}</h1>
@@ -20,7 +27,7 @@ const ATFProgramInfo: React.FC<ATFProgramInfoProps> = ({ intro, fullTitle, ticke
                 ))}
             </div>
             <div className="locations">
-                {locations.map((location, index) => (
+                {addresses.map((location, index) => (
                     <a href="https://maps.app.goo.gl/QoExhbjdaC8NAGSH9" key={index} className="location">
                         {location}
                     </a>

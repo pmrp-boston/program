@@ -8,7 +8,7 @@ import Information from './information/Information';
 import { Routes, Route, useSearchParams } from 'react-router-dom';
 
 export default function App() {
-  const [data, setData] = useState<Production>({ shows: [], fullTitle: '', imgSrc: '', imgAlt: '', introduction: '', bios: [], ticketsLink: '', dates: [] });
+  const [data, setData] = useState<Production>({ shows: [], fullTitle: '', imgSrc: '', imgAlt: '', introduction: '', bios: [], ticketsLink: '', dates: [], locations: [] });
   const [showTheme, setShowTheme] = useState<string>('');
   const [searchParams] = useSearchParams();
 
@@ -28,9 +28,7 @@ export default function App() {
     if (searchParams.has('show') && showParam && Object.values(PROD_KEYS).includes(showParam)) {
       const validShowParam = showParam as ProdKeys;
       readData(validShowParam);
-      if (showTheme == '') {
-        setShowTheme(validShowParam);
-      }
+      setShowTheme(validShowParam);
     }
   }, [searchParams, readData]);
 
@@ -60,7 +58,7 @@ export default function App() {
             ticketsLink={data.ticketsLink}
             dates={data.dates}
             locations={data.locations} />} />
-          <Route path="/directions" element={<Directions />} />
+          <Route path="/directions" element={<Directions locations={data.locations} />} />
           <Route path="/information" element={<Information />} />
         </Routes>
       </div>

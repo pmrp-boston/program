@@ -183,5 +183,6 @@
   "imgSrc": "./bulletsbanner.jpg",
   "imgAlt": "",
   "introduction": "",
-  "ticketsLink": "https://pmrp.org/tickets"
+  "ticketsLink": "https://pmrp.org/tickets",
+  "locations": ["Guild Church", "Mosesian"]
 }
