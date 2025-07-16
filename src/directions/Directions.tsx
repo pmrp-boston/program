@@ -79,7 +79,7 @@ const Directions = ({ locations }: { locations: string[] }) => {
                 Holland Street will turn into <strong>Elm Street</strong> as you approach Davis Square. Veer <strong>left onto Summer Street</strong> after passing the Davis Square MBTA station.
               </li>
               <li>
-                The VFW will be on your <strong>left</strong> at 371 Summer Street.
+                The VFW will be on your <strong>left</strong> at 351 Summer Street.
               </li>
             </ol>
 
