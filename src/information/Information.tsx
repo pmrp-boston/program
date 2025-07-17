@@ -1,4 +1,3 @@
-
 const Information = () => {
   return (
     <main>

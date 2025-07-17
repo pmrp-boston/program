@@ -127,6 +127,19 @@ div.bullets {
   }
 }
 
+.feedback {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  padding: .8em;
+  border-top-right-radius: 10px;
+
+  i {
+    margin: 0 .5em;
+  }
+}
+
 .topMenu {
   display: flex;
   flex-direction: column;

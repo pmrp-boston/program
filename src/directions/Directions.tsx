@@ -109,13 +109,19 @@ const Directions = ({ locations }: { locations: string[] }) => {
             <h2>Photos</h2>
             <div className="photos">
               <figure>
-                <img src="https://pmrp.nyc3.cdn.digitaloceanspaces.com/guide/vfwentrance.jpg" alt="The front entrance of the VFW building as seen from the outside. A flat paved path leads to double glass doors that open outward." />
+                <a href="https://pmrp.nyc3.cdn.digitaloceanspaces.com/guide/vfwentrance.jpg">
+                  <img src="https://pmrp.nyc3.cdn.digitaloceanspaces.com/guide/vfwentrance.jpg" alt="The front entrance of the VFW building as seen from the outside. A flat paved path leads to double glass doors that open outward." />
+                </a>
                 <figcaption>The front entrance to the VFW</figcaption>
               </figure>
+
               <figure>
-                <img src="https://pmrp.nyc3.cdn.digitaloceanspaces.com/guide/vfw.jpg" alt={`The side of the VFW building as seen from Summer Street. The wall is made of flat, grey stone slabs and has large letters reading "George Dilboy VFW Post 529"`} />
+                <a href="https://pmrp.nyc3.cdn.digitaloceanspaces.com/guide/vfw.jpg">
+                  <img src="https://pmrp.nyc3.cdn.digitaloceanspaces.com/guide/vfw.jpg" alt={`The side of the VFW building as seen from Summer Street. The wall is made of flat, grey stone slabs and has large letters reading "George Dilboy VFW Post 529"`} />
+                </a>
                 <figcaption>The side of the VFW building as seen from Summer Street</figcaption>
               </figure>
+
             </div>
           </div>
         </div>
