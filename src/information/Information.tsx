@@ -1,10 +1,9 @@
 
 const Information = () => {
   return (
-    <div>
+    <main>
       <h1>Information and Accessibility</h1>
-      <div className="infoTOC">
-        <h4>Table of Contents</h4>
+      <div className="tableOfContents">
         <ul>
           <li>
             <a href="#venue">About the Venue - George Dilboy VFW Post 529</a>
@@ -54,7 +53,7 @@ const Information = () => {
         </div>
         <div id="show">
           <h2>About the Show</h2>
-          <h3 id="content">Content Warnings</h3>
+          <h3 id="contentWarnings">Content Warnings</h3>
           <p><i>The Menagerie</i> is based on an episode of the original *Star Trek* series which received a <em>TV-PG</em> rating when it first aired. It also includes the following themes that some audience members might find upsetting:</p>
           <ul>
             <li>Physical violence</li>
@@ -73,7 +72,7 @@ const Information = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

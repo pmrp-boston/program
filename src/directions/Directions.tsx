@@ -2,7 +2,7 @@
 const Directions = ({ locations }: { locations: string[] }) => {
 
   return (
-    <>
+    <main>
       {locations.length > 1 &&
         <ul className="locationsList">
           {locations.map((location, index) =>
@@ -15,7 +15,26 @@ const Directions = ({ locations }: { locations: string[] }) => {
       {locations.includes('VFW') &&
         <div id="VFW" className="directions">
           <h1>Directions to George Dilboy VFW Post 529</h1>
+          <div className="tableOfContents">
+            <ul>
+              <li>
+                <a href="#transit">By Public Transit</a>
+              </li>
+              <li>
+                <a href="#driving">By Car</a>
+                <ul>
+                  <li>
+                    <a href="#parking">Parking</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#photos">Photos</a>
+              </li>
+            </ul>
+          </div>
           <div id="transit">
+            <h2>By Public Transit</h2>
             <h3>By Train</h3>
             <p>The nearest subway (or "T") station to the VFW is the <strong>Davis Square station</strong>. The VFW is 0.3 miles from the station or about 6 to 10 minutes by foot.</p>
             <ol>
@@ -40,10 +59,6 @@ const Directions = ({ locations }: { locations: string[] }) => {
                 Turn right onto Summer Street. The VFW will be on your left.
               </li>
             </ol>
-          </div>
-          <div id="rideshare">
-            <h3>Rideshare/Taxi Dropoff</h3>
-            <p></p>
           </div>
           <div id="driving">
             <h2>By Car</h2>
@@ -90,13 +105,26 @@ const Directions = ({ locations }: { locations: string[] }) => {
             <p>The VFW has a dedicated parking lot with approximately 40 spaces including two (2) accessible parking spaces. Please be aware of signs indicating some of the spaces as resident only.</p>
             <p>Metered street parking in Davis Square is free after 8pm. Please take care to avoid resident permit-only parking.</p>
           </div>
+          <div id="photos">
+            <h2>Photos</h2>
+            <div className="photos">
+              <figure>
+                <img src="https://pmrp.nyc3.cdn.digitaloceanspaces.com/guide/vfwentrance.jpg" alt="The front entrance of the VFW building as seen from the outside. A flat paved path leads to double glass doors that open outward." />
+                <figcaption>The front entrance to the VFW</figcaption>
+              </figure>
+              <figure>
+                <img src="https://pmrp.nyc3.cdn.digitaloceanspaces.com/guide/vfw.jpg" alt={`The side of the VFW building as seen from Summer Street. The wall is made of flat, grey stone slabs and has large letters reading "George Dilboy VFW Post 529"`} />
+                <figcaption>The side of the VFW building as seen from Summer Street</figcaption>
+              </figure>
+            </div>
+          </div>
         </div>
       }
       {locations.includes('Guild Church') &&
         <div id="Guild Church">
           <h1>Directions to the Guild Church</h1>
           <div className="transit">
-            <h3>By Train</h3>
+            <h2>By Train</h2>
             <p>The nearest subway (or "T") station to the church is the <strong>Davis Square station</strong>. The VFW is 0.3 miles from the station or about 6 to 10 minutes by foot.</p>
             <ol>
               <li>
@@ -108,7 +136,7 @@ const Directions = ({ locations }: { locations: string[] }) => {
               <li>
                 Keep right to stay on Elm Street until you cross Russell Street. The church is on the corner of Elm Street and Russell Street.
               </li></ol>
-            <h3>By Bus</h3>
+            <h2>By Bus</h2>
             <p>The <strong>87 bus stop</strong> at the <strong>intersection of Elm Street and Russel Street</strong> is directly in front of the Guild Church. Exit the Davis Square T station onto <strong>Holland Street</strong> to catch the 87 bus.</p>
           </div>
           <div className="driving">
@@ -156,7 +184,7 @@ const Directions = ({ locations }: { locations: string[] }) => {
           </div>
         </div>
       }
-    </>
+    </main>
   );
 };
 

@@ -13,7 +13,7 @@ const CreditsBlock = ({ show, biosExist, crewBlock }: { show: Show, biosExist: b
   return (
     <div className="programBlock">
       <div className="programBlock-header">
-        {showName ? <h3>{showName}</h3> : <h3>Crew</h3>}
+        {showName ? <h2>{showName}</h2> : <h2>Crew</h2>}
 
         <div className="programBlock-header--highlightCredits">
 
@@ -52,16 +52,16 @@ const HighlightCredit = ({ name, defaultPhrase, biosReady, goToBio, phrase = "" 
   if (biosReady) {
     return (
       <a href={`#${name}`} onClick={() => goToBio(name)} className={`highlightCredit${biosReady ? "" : "-noBios"}`}>
-        <h4 className={`highlightCredit${biosReady ? "" : "-noBios"}`}>{phrase || defaultPhrase}
-
-        </h4>
+        <h3 className={`highlightCredit${biosReady ? "" : "-noBios"}`}>
+          {phrase || defaultPhrase}
+        </h3>
       </a>
     );
   } else {
     return (
-      <h4 className={`highlightCredit${biosReady ? "" : "-noBios"}`}>
+      <h3 className={`highlightCredit${biosReady ? "" : "-noBios"}`}>
         {phrase || defaultPhrase}
-      </h4>
+      </h3>
     );
   }
 

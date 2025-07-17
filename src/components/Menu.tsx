@@ -35,7 +35,7 @@ const Menu: React.FC<MenuProps> = ({ setDarkTheme, darkTheme }) => {
                 <img src="./smallDarkLogo.png" alt="The Post Meridian Radio Players" />
               </div>
             }
-            <img src="../../public/assets/icons/menu.png" alt="Open Menu" className="icon" />
+            <i className="fa-solid fa-bars"></i>
           </summary>
           <ul className={`mainMenu`}>
             <li>
@@ -64,7 +64,6 @@ const Menu: React.FC<MenuProps> = ({ setDarkTheme, darkTheme }) => {
             <li>
               <button className={`toggleDarkTheme toggleDarkTheme--${darkTheme ? 'light' : 'dark'}`} onClick={setDarkTheme} aria-pressed={darkTheme}>
                 Turn Dark Mode {darkModeText}
-                <i className="fa-solid fa-circle-half-stroke"></i>
               </button>
             </li>
           </ul>
@@ -106,8 +105,7 @@ const Menu: React.FC<MenuProps> = ({ setDarkTheme, darkTheme }) => {
               </li>
               <li>
                 <button className={`toggleDarkTheme toggleDarkTheme--${darkTheme ? 'light' : 'dark'}`} onClick={setDarkTheme}>
-                  <span>Turn Dark Mode {darkModeText}
-                    <i className="fa-solid fa-circle-half-stroke"></i></span>
+                  Turn Dark Mode {darkModeText}
                 </button>
               </li>
             </ul>
