@@ -63,7 +63,7 @@ export default function App() {
           <Route path="/information" element={<Information />} />
         </Routes>
       </div>
-      <BackToTop />
+      <footer><BackToTop /></footer>
     </div>
   );
 }

@@ -77,14 +77,14 @@ const SingleCredit = ({ credit, goToBio, biosReady = false }: { credit: Person, 
 
 
   return (
-    <div className="singleCredit">
-      <span className={`singleCredit-role ${wrapFixRole ? "wrapFix" : "noFix"}`}>{roles.join(', ')}</span>
-      <span className="dots"></span>
+    <dl className="singleCredit">
+      <dt className={`singleCredit-role ${wrapFixRole ? "wrapFix" : "noFix"}`}>{roles.join(', ')}</dt>
+      <dt className="dots"></dt>
       {biosReady && <a href={`#${name}`} onClick={() => goToBio(name)} className={`singleCredit-name ${wrapFixName ? "wrapFix" : "noFix"}`}>
         {name}
       </a>}
       {!biosReady && <span className={`singleCredit-name ${wrapFixName ? "wrapFix" : "noFix"}`}>{name}</span>}
-    </div>
+    </dl>
   );
 };
 
