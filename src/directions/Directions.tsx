@@ -13,9 +13,9 @@ const Directions = ({ locations }: { locations: string[] }) => {
         </ul>
       }
       {locations.includes('VFW') &&
-        <div id="VFW">
+        <div id="VFW" className="directions">
           <h1>Directions to George Dilboy VFW Post 529</h1>
-          <div className="transit">
+          <div id="transit">
             <h3>By Train</h3>
             <p>The nearest subway (or "T") station to the VFW is the <strong>Davis Square station</strong>. The VFW is 0.3 miles from the station or about 6 to 10 minutes by foot.</p>
             <ol>
@@ -41,7 +41,11 @@ const Directions = ({ locations }: { locations: string[] }) => {
               </li>
             </ol>
           </div>
-          <div className="driving">
+          <div id="rideshare">
+            <h3>Rideshare/Taxi Dropoff</h3>
+            <p></p>
+          </div>
+          <div id="driving">
             <h2>By Car</h2>
             <h3>From US-1 Northbound or Southbound</h3>
             <ol>
@@ -82,7 +86,9 @@ const Directions = ({ locations }: { locations: string[] }) => {
                 The VFW will be on your <strong>left</strong> at 351 Summer Street.
               </li>
             </ol>
-
+            <h3 id="parking">Parking</h3>
+            <p>The VFW has a dedicated parking lot with approximately 40 spaces including two (2) accessible parking spaces. Please be aware of signs indicating some of the spaces as resident only.</p>
+            <p>Metered street parking in Davis Square is free after 8pm. Please take care to avoid resident permit-only parking.</p>
           </div>
         </div>
       }

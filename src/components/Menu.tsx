@@ -15,6 +15,10 @@ const Menu: React.FC<MenuProps> = ({ setDarkTheme, darkTheme }) => {
     menu?.removeAttribute("open")
   }
 
+  // const darkModeIcon = !darkTheme ? 'light_mode' : 'dark_mode';
+  const darkModeText = darkTheme ? 'OFF' : 'ON';
+  console.log(darkTheme)
+
   return (
     <div className="pageHeader">
       <nav className="topMenu">
@@ -31,45 +35,36 @@ const Menu: React.FC<MenuProps> = ({ setDarkTheme, darkTheme }) => {
                 <img src="./smallDarkLogo.png" alt="The Post Meridian Radio Players" />
               </div>
             }
-            <span className="material-symbols-outlined">
-              menu
-            </span>
+            <img src="../../public/assets/icons/menu.png" alt="Open Menu" className="icon" />
           </summary>
           <ul className={`mainMenu`}>
             <li>
-              <Link to={`/${location.search}`} onClick={() => closeMenu()}>Cast and Crew</Link>
+              <Link to={`/${location.search}`} onClick={() => closeMenu()}>Program</Link>
             </li>
             <li>
               <Link to={`/directions${location.search}`} onClick={() => closeMenu()}>Directions</Link>
             </li>
             <li>
-              <Link to={`/information${location.search}`} onClick={() => closeMenu()}>Information and Accessibility (Coming Soon!)</Link>
+              <Link to={`/information${location.search}`} onClick={() => closeMenu()}>Information and Accessibility</Link>
             </li>
           </ul>
           <ul className={`secondaryMenu`}>
             <li>
               <a href="https://www.pmrp.org" target="_blank" rel="noopener noreferrer">
                 PMRP Main Website
-                <span className="material-symbols-outlined">
-                  open_in_new
-                </span>
+                <i className="fa-solid fa-arrow-up-right-from-square"></i>
               </a>
-
             </li>
             <li>
               <a href="https://www.zazzle.com/store/postmeridianradio" target="_blank" rel="noopener noreferrer">
                 Store
-                <span className="material-symbols-outlined">
-                  open_in_new
-                </span>
+                <i className="fa-solid fa-arrow-up-right-from-square"></i>
               </a>
             </li>
             <li>
-              <button className={`toggleDarkTheme toggleDarkTheme--${darkTheme ? 'light' : 'dark'}`} onClick={setDarkTheme}>
-                Toggle Dark Mode
-                <span className="material-symbols-outlined">
-                  {darkTheme ? 'clear_day' : 'dark_mode'}
-                </span>
+              <button className={`toggleDarkTheme toggleDarkTheme--${darkTheme ? 'light' : 'dark'}`} onClick={setDarkTheme} aria-pressed={darkTheme}>
+                Turn Dark Mode {darkModeText}
+                <i className="fa-solid fa-circle-half-stroke"></i>
               </button>
             </li>
           </ul>
@@ -86,39 +81,33 @@ const Menu: React.FC<MenuProps> = ({ setDarkTheme, darkTheme }) => {
           <div className="menuItems">
             <ul className={`mainMenu`}>
               <li>
-                <Link to={`/${location.search}`}>Cast and Crew</Link>
+                <Link to={`/${location.search}`}>Program</Link>
               </li>
               <li>
                 <Link to={`/directions${location.search}`}>Directions</Link>
               </li>
               <li>
-                <Link to={`/information${location.search}`}>Information and Accessibility (Coming Soon!)</Link>
+                <Link to={`/information${location.search}`}>Information and Accessibility</Link>
               </li>
             </ul>
             <ul className={`secondaryMenu`}>
               <li>
                 <a href="https://www.pmrp.org" target="_blank" rel="noopener noreferrer">
                   PMRP Main Website
-                  <span className="material-symbols-outlined">
-                    open_in_new
-                  </span>
+                  <i className="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
 
               </li>
               <li>
                 <a href="https://www.zazzle.com/store/postmeridianradio" target="_blank" rel="noopener noreferrer">
                   Store
-                  <span className="material-symbols-outlined">
-                    open_in_new
-                  </span>
+                  <i className="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
               </li>
               <li>
                 <button className={`toggleDarkTheme toggleDarkTheme--${darkTheme ? 'light' : 'dark'}`} onClick={setDarkTheme}>
-                  Toggle Dark Mode
-                  <span className="material-symbols-outlined">
-                    {darkTheme ? 'clear_day' : 'dark_mode'}
-                  </span>
+                  <span>Turn Dark Mode {darkModeText}
+                    <i className="fa-solid fa-circle-half-stroke"></i></span>
                 </button>
               </li>
             </ul>
