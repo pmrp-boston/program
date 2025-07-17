@@ -10,7 +10,7 @@ const Program = ({ shows, imgAlt, imgSrc, fullTitle, introduction, bios, tickets
   const biosExist = bios.length > 0;
 
   return (
-    <div>
+    <main>
       <div className="credits">
         <div className="programHeader">
           <h4 className="preHeader">The Post Meridian Radio Players Present</h4>
@@ -27,7 +27,7 @@ const Program = ({ shows, imgAlt, imgSrc, fullTitle, introduction, bios, tickets
           <Bios bios={bios} />
         </div>
       )}
-    </div>
+    </main>
   );
 };
 

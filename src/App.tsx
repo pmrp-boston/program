@@ -6,6 +6,7 @@ import Menu from './components/Menu';
 import Directions from './directions/Directions';
 import Information from './information/Information';
 import { Routes, Route, useSearchParams } from 'react-router-dom';
+import BackToTop from './components/BackToTop';
 
 export default function App() {
   const [data, setData] = useState<Production>({ shows: [], fullTitle: '', imgSrc: '', imgAlt: '', introduction: '', bios: [], ticketsLink: '', dates: [], locations: [] });
@@ -62,6 +63,7 @@ export default function App() {
           <Route path="/information" element={<Information />} />
         </Routes>
       </div>
+      <BackToTop />
     </div>
   );
 }
