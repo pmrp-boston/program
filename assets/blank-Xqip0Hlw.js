@@ -1,0 +1,1 @@
+const t={showName:"",directorCredits:[{name:"",phrase:""}],writerCredit:{name:"",phrase:""},description:"",credits:[],foleyCredits:[]},s="",e="",o="",i="",r=[],n={shows:t,imgSrc:s,imgAlt:e,fullTitle:o,introduction:i,bios:r};export{r as bios,n as default,o as fullTitle,e as imgAlt,s as imgSrc,i as introduction,t as shows};
