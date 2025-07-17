@@ -1,70 +1,98 @@
 // This list can be added to indefinitely, the Shows type will read keys dynamically
 // These should match the way the show is listed in the Bios form
 export const SHOWS = {
-  DANGEROUS: 'Dangerous Game',
-  TOWNIES: 'Townies & Dragons',
-  BELLAMY: 'Captain Bellamy',
+  DANGEROUS: 'The Most Dangerous Game',
+  TOWNIES: 'Townies & Dragons: A Barrel Full of Peril',
+  BELLAMY: 'The Bonnie Tales of Captain Bellamy: Song of Trickery',
   PEARL: 'The Black Pearl',
   THIN: 'The Thin Man',
-  TRIFLES: 'Trifles'
+  TRIFLES: 'Trifles',
+  SPADE: "Samantha Spade in The Steve Starr Caper",
+  AFTER: "After the Thin Man",
+  TREK25: "The Menagerie"
 } as const;
 
 export const PROD_KEYS = {
   DANGEROUS: 'dangerous',
   THIRTEEN: 'thirteen',
   BULLETS: 'bullets',
+  MENAGERIE: 'menagerie',
 }
 
 // This includes keys for all shows currently in the SHOWS list
 export type ShowKeys = typeof SHOWS[keyof typeof SHOWS];
+export type ShowTitles = keyof typeof SHOWS;
 export type ProdKeys = typeof PROD_KEYS[keyof typeof PROD_KEYS];
 
 export interface Person {
   name: string;
-  shows: ShowKeys[];
-  roles: string;
+  roles: string[];
+}
+
+export interface Bio {
+  name: string;
   bio: string;
 }
 
+
 export interface Show {
-  showName: string;
-  writerCredit?: string;
-  adapterCredit?: string;
-  directorCredits: Person[];
+  showName?: string;
+  writerCredit?: { name: string, phrase?: string };
+  adapterCredit?: { name: string, phrase?: string };
+  directorCredits?: { name: string, phrase?: string }[];
   description?: string;
   credits: Person[];
-  foleyCredits: Person[];
+  foleyCredits?: Person[];
+}
+
+export interface Production {
+  shows: Show[],
+  fullTitle: string,
+  imgSrc: string,
+  imgAlt: string,
+  introduction: string,
+  bios: Bio[],
+  ticketsLink?: string,
+  dates?: string[],
+  locations: string[]
 }
 
 // This includes ONLY the names of the shows that should be displayed for this production
 // and associates them with their string keys
-export const showNames = {
-  'Dangerous Game': 'The Most Dangerous Game',
-  'Townies & Dragons': 'Townies & Dragons: Barrel Full of Peril',
-  'Captain Bellamy': 'The Bonnie Tales of Captain Bellamy: Song of Trickery',
-  'The Black Pearl': 'The Black Pearl',
-  'The Thin Man': 'The Thin Man',
-  'Trifles': 'Trifles'
+// export const showNames = {
+//   'Dangerous Game': 'The Most Dangerous Game',
+//   'Townies & Dragons': 'Townies & Dragons: Barrel Full of Peril',
+//   'Captain Bellamy': 'The Bonnie Tales of Captain Bellamy: Song of Trickery',
+//   'The Black Pearl': 'The Black Pearl',
+//   'The Thin Man': 'The Thin Man',
+//   'Trifles': 'Trifles'
+// }
+
+// This matches show query params to their spreadsheet urls and state
+export const showInfo: { [key in ProdKeys]: { biosExist: boolean, biosReady?: boolean } } = {
+  [(PROD_KEYS.DANGEROUS)]:
+  {
+    // url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFkErcd5ZxPZH3d5reCj2ioVSKqW4ZOt3Y5Wd76MTLy1tA-7h-NKheExSfr7h3LOXNa-ZM6DTHwIcP/pub?output=csv',
+    biosExist: true
+  },
+  [(PROD_KEYS.THIRTEEN)]:
+  {
+    // url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDvgsIjFxVnqxPFLdGrBYqVuXGJ8T5ibvw_v9hl2ToJ2yAQZHleGMkhkzVpyNrIVWZzqIlZ1d5IOLN/pub?gid=1373399454&single=true&output=csv',
+    biosExist: true
+  },
+  [PROD_KEYS.BULLETS]:
+  {
+    // url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFkErcd5ZxPZH3d5reCj2ioVSKqW4ZOt3Y5Wd76MTLy1tA-7h-NKheExSfr7h3LOXNa-ZM6DTHwIcP/pub?gid=1855070242&single=true&output=csv',
+    biosExist: false
+  },
+  [PROD_KEYS.MENAGERIE]: {
+    biosExist: false
+  }
 }
 
-// This matches show query params to their spreadsheet urls
-export const infoUrls: { [key in ProdKeys]: string } = {
-  [(PROD_KEYS.DANGEROUS)]: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFkErcd5ZxPZH3d5reCj2ioVSKqW4ZOt3Y5Wd76MTLy1tA-7h-NKheExSfr7h3LOXNa-ZM6DTHwIcP/pub?output=csv',
-  [(PROD_KEYS.THIRTEEN)]: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDvgsIjFxVnqxPFLdGrBYqVuXGJ8T5ibvw_v9hl2ToJ2yAQZHleGMkhkzVpyNrIVWZzqIlZ1d5IOLN/pub?gid=1373399454&single=true&output=csv',
+export interface ProductionCredits {
+  writer: Person | undefined;
+  director: Person[];
+  adapter: Person | undefined;
+  foley: Person[];
 }
-
-// Function to group people by show
-export const groupPeopleByShow = (people: Person[]) => {
-  const grouped: { [key in ShowKeys]: Person[] } = {} as { [key in ShowKeys]: Person[] };
-  people.forEach(person => {
-    person.shows.forEach(show => {
-      if (!grouped[show]) {
-        grouped[show] = [];
-      }
-      if (!person.roles.includes('Writer') && !person.roles.includes('Director') && !person.roles.includes('Adapted') && !person.roles.includes('Foley')) {
-        grouped[show]!.push(person);
-      }
-    });
-  });
-  return grouped;
-};

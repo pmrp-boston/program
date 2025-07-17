@@ -1,100 +1,73 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './App.scss';
-import * as XLSX from 'xlsx';
-import Program from './components/Program';
-import { Person, infoUrls } from './data';
-import Papa from 'papaparse';
+import Program from './program/Program';
+import { ProdKeys, PROD_KEYS, Production } from './data';
+import Menu from './components/Menu';
+import Directions from './directions/Directions';
+import Information from './information/Information';
+import { Routes, Route, useSearchParams } from 'react-router-dom';
+import BackToTop from './components/BackToTop';
+// import Feedback from './components/Feedback';
 
 export default function App() {
-  const [data, setData] = useState<Person[]>([]);
+  const [data, setData] = useState<Production>({ shows: [], fullTitle: '', imgSrc: '', imgAlt: '', introduction: '', bios: [], ticketsLink: '', dates: [], locations: [] });
   const [showTheme, setShowTheme] = useState<string>('');
+  const [searchParams] = useSearchParams();
 
-  const fetchData = async (show: string | null) => {
-    if (!show) {
-      console.error('No show parameter provided');
-      return;
-    }
+  const readData = useCallback(async (show: ProdKeys) => {
     try {
-      const showUrl = infoUrls[show];
-      const response = await fetch(showUrl);
-      const csvData = await response.text();
-      const extractedData = processData(csvData);
-      console.log(extractedData);
-      setData(extractedData);
+      const module = await import(`./assets/${show}.json`);
+      const showData = module.default;
+      setData(showData);
     } catch (error) {
-      console.error('Error fetching data from Google Sheet:', error);
-    }
-  };
-
-  const readData = async () => {
-    try {
-      const response = await fetch('/assets/currentData.csv');
-      const csvData = await response.text();
-
-      Papa.parse(csvData, {
-        header: true,
-        complete: (results: Papa.ParseResult<any>) => {
-          const extractedData = processCsvData(results.data);
-          console.log('Parsed CSV Data:', extractedData);
-          setData(extractedData);
-        },
-      });
-    } catch (error) {
-      console.error('Error reading data from CSV:', error);
-    }
-  };
-
-  const processCsvData = (csvData: any[]): Person[] => {
-    return csvData.map((row: any) => ({
-      name: row["Full Name"],
-      shows: (row["Show(s)"] || '').split(',').map((show: string) => show.trim()),
-      roles: row.Role,
-      bio: row.Bio,
-    })).filter((person: Person) => person.name);
-  }
-
-  const processData = (csvData: string): Person[] => {
-    const workbook = XLSX.read(csvData, { type: 'string', raw: true });
-    const sheetName = workbook.SheetNames[0];
-    const worksheet = workbook.Sheets[sheetName];
-    const rawData: any[][] = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-    const extractedData: Person[] = rawData.slice(1).map((row) => ({
-      name: row[1],   // Column B
-      shows: row[3]?.split(', '),    // Column D
-      roles: row[4],    // Column E
-      bio: row[5],      // Column F
-    })).filter(person => person.name); // Filter out rows with no name
-    return extractedData;
-  }
-
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-
-    if (urlParams.has('show')) {
-      const showParam = urlParams.get('show');
-      if (showParam !== null) {
-        fetchData(showParam);
-        setShowTheme(showParam)
-      }
-    } else {
-      console.log('reading data')
-      readData();
+      console.error('Error reading data from JSON:', error);
     }
   }, []);
 
+  useEffect(() => {
+    const showParam = searchParams.get('show');
+
+    if (searchParams.has('show') && showParam && Object.values(PROD_KEYS).includes(showParam)) {
+      const validShowParam = showParam as ProdKeys;
+      readData(validShowParam);
+      setShowTheme(validShowParam);
+    }
+  }, [searchParams, readData]);
+
+  const setDarkTheme = () => {
+    if (showTheme.endsWith('-dark')) {
+      setShowTheme(showTheme.replace('-dark', ''));
+      return;
+    } else {
+      setShowTheme(`${showTheme}-dark`);
+    }
+  }
+
+  const darkTheme = showTheme.endsWith('-dark') ? true : false;
+
   return (
     <div className={showTheme}>
-      <div className="wrapper">
-        <Program data={data} showTheme={showTheme} />
-        <a href="#top" className="backToTop--link">
-          <div className="backToTop">
-            <span>Back to Top</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" fill="currentColor" className="bi bi-arrow-up" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5" />
-            </svg>
-          </div>
-        </a>
+      <Menu darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
+      <div id="content">
+        <Routes>
+          <Route path="/" element={<Program
+            shows={data.shows}
+            imgAlt={data.imgAlt}
+            imgSrc={data.imgSrc}
+            fullTitle={data.fullTitle}
+            introduction={data.introduction}
+            bios={data.bios}
+            ticketsLink={data.ticketsLink}
+            dates={data.dates}
+            locations={data.locations} />} />
+          <Route path="/directions" element={<Directions locations={data.locations} />} />
+          <Route path="/information" element={<Information />} />
+        </Routes>
       </div>
+      <footer>
+        {/* <Feedback /> */}
+        <BackToTop />
+      </footer>
     </div>
   );
 }
